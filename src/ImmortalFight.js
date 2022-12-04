@@ -4,6 +4,7 @@ import { Background } from "./entities/Background.js";
 import { FpsCounter } from "./entities/FpsCounter.js";
 import { BACKGROUND_FLOOR } from "./constants/background.js";
 import { FighterDirection } from "./constants/fighter.js";
+import { registerKeyboardEvents } from "./InputHandler.js";
 
 export class ImmortalFight{
 
@@ -11,8 +12,8 @@ export class ImmortalFight{
     this.context = this.getContext();
 
     this.fighters = [
-      new Naruto(104, BACKGROUND_FLOOR, FighterDirection.RIGHT),
-      new Goku(280, BACKGROUND_FLOOR, FighterDirection.LEFT),
+      new Naruto(104, BACKGROUND_FLOOR, FighterDirection.RIGHT,0),
+      new Goku(280, BACKGROUND_FLOOR, FighterDirection.LEFT,1),
     ];
   
     this.entities = [
@@ -61,23 +62,9 @@ export class ImmortalFight{
    
   }
 
-  handleFormSubmit(event){
-    event.preventDefault();
   
-    const selectedCheckboxes = Array
-    .from(event.target.querySelectorAll('input:checked'))
-    .map(checkbox => checkbox.value);
-  
-    const options = event.target.querySelector('select');
-  
-    this.fighters.forEach(fighter =>{
-      if(selectedCheckboxes.includes(fighter.name)){
-        fighter.changeState(options.value);
-      }
-    });
-  }
   start(){
-    document.addEventListener('submit', this.handleFormSubmit.bind(this));
+    registerKeyboardEvents();
     window.requestAnimationFrame(this.frame.bind(this));
   }
 }

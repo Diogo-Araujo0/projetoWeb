@@ -15,9 +15,6 @@
 
       body {
         display: flex;
-        flex-direction: column;
-        --form-height: 6rem;
-        --form-content-size: 2rem;
       }
       body,
       canvas {
@@ -34,51 +31,11 @@
       img {
         display: none;
       }
-      form{
-        display: flex;
-        flex-wrap: wrap;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        gap: var(--form-content-size);
-        height: var(--form-height);
-      }
-
-      form *{
-        font-size: var(--form-content-size);
-      }
-
-      input[type="checkbox"]{
-        width: var(--form-content-size);
-        height: var(--form-context-size);
-      }
-      main{
-        display:flex;
-        height: calc(100% - var(--form-height));
-      }
-
-      label{
-        color: white;
-      }
     </style>
     <script type="module" src="./src/index.js"></script>
   </head>
   <body>
-    <form>
-      <div>
-        <input id="naruto" type="checkbox" name="fighter" value="Naruto"/>
-        <label for="naruto">Naruto</label>
-      </div>
-      <div>
-        <input id="goku" type="checkbox" name="fighter" value="Goku"/>
-        <label for="goku">Goku</label>
-      </div>
-      <select name="state" id="state-dropdown"></select>
-      <button type="submit">Transition!</button>
-    </form>
-    <main>
       <canvas width="384" height="224"></canvas>
-    </main>
   
     <img src="./imagens/naruto2.png" alt="naruto" />
     <img src="./imagens/kakashi.png" alt="goku" />
