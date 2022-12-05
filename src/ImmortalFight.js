@@ -16,6 +16,8 @@ export class ImmortalFight{
       new Goku(280, BACKGROUND_FLOOR, FighterDirection.LEFT,1),
     ];
   
+    this.fighters[0].opponent = this.fighters[1];
+    this.fighters[1].opponent = this.fighters[0];
     this.entities = [
       new Background(),
       ...this.fighters,

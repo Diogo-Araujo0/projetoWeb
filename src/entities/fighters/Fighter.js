@@ -1,5 +1,5 @@
 import { BACKGROUND_FLOOR } from "../../constants/background.js";
-import { FighterState } from "../../constants/fighter.js";
+import { FighterDirection, FighterState } from "../../constants/fighter.js";
 import * as control from "../../InputHandler.js";
 
 export class Fighter {
@@ -11,13 +11,15 @@ export class Fighter {
     this.initialVelocity = {};
     this.direction = direction;
     this.gravity = 0;
-
+    this.opponent;
+    
     this.frames = new Map();
     this.animationFrame = 0;
     this.animationTimer = 0;
     this.animations = {};
 
     this.image = new Image();
+
     this.states={
       [FighterState.IDLE]:{
         init: this.handleIdleInit.bind(this),
@@ -38,16 +40,30 @@ export class Fighter {
       },
       [FighterState.WALK_BACKWARD]:{
         init: this.handleMoveInit.bind(this),
-        update: this.handleWalkBackwardsState.bind(this),
+        update: this.handleWalBackwardState.bind(this),
         validForm: [
           FighterState.IDLE,FighterState.WALK_FORWARD,
         ],
       },
       [FighterState.JUMP_UP]:{
-        init: this.handleJumpUpInit.bind(this),
-        update: this.handleJumpUpState.bind(this),
+        init: this.handleJumpInit.bind(this),
+        update: this.handleJumpState.bind(this),
         validForm: [
           FighterState.IDLE,
+        ],
+      },
+      [FighterState.JUMP_FORWARD]:{
+        init: this.handleJumpInit.bind(this),
+        update: this.handleJumpState.bind(this),
+        validForm: [
+          FighterState.IDLE,FighterState.WALK_FORWARD,
+        ],
+      },
+      [FighterState.JUMP_BACKWARD]:{
+        init: this.handleJumpInit.bind(this),
+        update: this.handleJumpState.bind(this),
+        validForm: [
+          FighterState.IDLE,FighterState.WALK_BACKWARD,
         ],
       },
       [FighterState.CROUCH]:{
@@ -77,6 +93,8 @@ export class Fighter {
 
   }
 
+  getDirection = () => this.position.x >= this.opponent.position.x 
+   ? FighterDirection.LEFT : FighterDirection.RIGHT;
   changeState(newState) {
     if ( newState == this.currentState || !this.states[newState].validForm.includes(this.currentState)) return; 
 
@@ -97,8 +115,9 @@ export class Fighter {
 
 
 
-  handleJumpUpInit(){
+  handleJumpInit(){
     this.velocity.y = this.initialVelocity.jump;
+    this.handleMoveInit();
     
   }
   
@@ -117,11 +136,12 @@ export class Fighter {
     if(!control.isForward(this.playerId,this.direction)) this.changeState(FighterState.IDLE);
     if(control.isDown(this.playerId)) this.changeState(FighterState.CROUCH_DOWN);
 
+
   }
-  handleWalkBackwardsState(){
+
+  handleWalBackwardState(){
     if(!control.isBackward(this.playerId,this.direction)) this.changeState(FighterState.IDLE);
     if(control.isDown(this.playerId)) this.changeState(FighterState.CROUCH_DOWN);
-
   }
 
   handleCrouchState(){
@@ -141,7 +161,7 @@ export class Fighter {
     }
   }
 
-  handleJumpUpState(time){
+  handleJumpState(time){
     this.velocity.y += this.gravity * time.secondsPassed;
 
     if(this.position.y > BACKGROUND_FLOOR){
@@ -180,10 +200,16 @@ export class Fighter {
       }
     }
   }
+
   update(time, context) {
 
     this.position.x += (this.velocity.x * this.direction) * time.secondsPassed;
     this.position.y += this.velocity.y * time.secondsPassed;
+    
+
+    if([FighterState.IDLE, FighterState.WALK_FORWARD,FighterState.WALK_BACKWARD].includes(this.currentState)){
+      this.direction = this.getDirection();
+    }
     this.states[this.currentState].update(time,context);
     this.updateAnimation(time);
     this.updateStageContraints(context);

@@ -8,6 +8,8 @@ export const FighterState = {
   WALK_FORWARD: 'walkForwards',
   WALK_BACKWARD: 'walkBackwards',
   JUMP_UP: 'jumpUp',
+  JUMP_FORWARD: 'jumpForward',
+  JUMP_BACKWARD: 'jumpBackwards',
   CROUCH: 'crouch',
   CROUCH_DOWN: 'crouchDown',
   CROUCH_UP: 'crouchUp',
