@@ -11,10 +11,10 @@ export class Background {
           delay: 120
       }
     } else if (this.id === 2){
-        this.animations = {
-            length: 24,
-            delay: 120
-        }
+      this.animations = {
+          length: 24,
+          delay: 120
+      }
     } else if (this.id === 3){
       this.animations = {
         length: 8,
@@ -25,8 +25,17 @@ export class Background {
           length: 40,
           delay: 190,
       }
+    } else if (this.id === 5){
+      this.animations = {
+          length: 8,
+          delay: 80,
+      }
+    } else if (this.id === 6){
+      this.animations = {
+        length: 38,
+        delay: 80,
+      }
     }
-    
   }
   
   update(time) {
