@@ -19,6 +19,7 @@ export class Fighter {
     this.animations = {};
 
     this.image = new Image();
+    this.pushBox = { x:0 , y:0, width: 0, height: 0 };
 
     this.states={
       [FighterState.IDLE]:{
@@ -93,8 +94,24 @@ export class Fighter {
 
   }
 
-  getDirection = () => this.position.x >= this.opponent.position.x 
-   ? FighterDirection.LEFT : FighterDirection.RIGHT;
+  getDirection(){
+    if(this.position.x + this.pushBox.x + this.pushBox.width 
+      <=  this.opponent.position.x + this.opponent.pushBox.x){
+      return FighterDirection.RIGHT;
+    }else if (this.position.x + this.pushBox.x 
+      >= this.opponent.position.x + this.opponent.pushBox.x + this.opponent.pushBox.width){
+      return FighterDirection.LEFT;
+    }
+
+    return this.direction;
+  }
+
+
+  getPushBox(frameKey){
+    const  [, [x, y, width, height] = [0,0,0,0]] = this.frames.get(frameKey);
+
+    return {x, y, width, height};
+  }
   changeState(newState) {
     if ( newState == this.currentState || !this.states[newState].validForm.includes(this.currentState)) return; 
 
@@ -173,27 +190,27 @@ export class Fighter {
   }
 
   updateStageContraints(context){
-    const WIDTH = 32;
-    if (this.position.x > context.canvas.width - WIDTH) {
+    if (this.position.x > context.canvas.width - this.pushBox.width) {
 
-      this.position.x = context.canvas.width - WIDTH;
+      this.position.x = context.canvas.width - this.pushBox.width;
 
     }
 
-    if(this.position.x < WIDTH){
+    if(this.position.x < this.pushBox.width){
 
-      this.position.x = WIDTH;
+      this.position.x = this.pushBox.width;
 
     }
   }
 
   updateAnimation(time){
     const animation = this.animations[this.currentState];
-    const [, frameDelay] = animation[this.animationFrame];
+    const [frameKey, frameDelay] = animation[this.animationFrame];
     if (time.previous > this.animationTimer + frameDelay) {
       this.animationTimer = time.previous;
       if(frameDelay > 0){
        this.animationFrame++;
+       this.pushBox = this.getPushBox(frameKey);
       }
       if (this.animationFrame >= animation.length){ 
         this.animationFrame = 0;
@@ -216,22 +233,45 @@ export class Fighter {
   }
 
   drawDebug(context) {
+    const [frameKey] = this.animations[this.currentState][this.animationFrame];
+    const pushBox= this.getPushBox(frameKey);
+
     context.lineWidth = 1;
+
+    //PushBox
+    context.beginPath();
+    context.strokeStyle = '#55FF55';
+    context.fillStyle = '#55FF5555';
+    context.fillRect(
+      Math.floor(this.position.x + pushBox.x) + 0.5,
+      Math.floor(this.position.y + pushBox.y) + 0.5,
+      pushBox.width,
+      pushBox.height,
+    );
+    context.rect(
+      Math.floor(this.position.x + pushBox.x) + 0.5,
+      Math.floor(this.position.y + pushBox.y) + 0,5,
+      pushBox.width,
+      pushBox.height,
+    );
+    context.stroke()
+
+    //Origin
     context.beginPath();
     context.strokeStyle = "white";
-    context.moveTo(Math.floor(this.position.x) - 4.5, Math.floor(this.position.y));
-    context.lineTo(Math.floor(this.position.x) + 4.5, Math.floor(this.position.y));
-    context.moveTo(Math.floor(this.position.x), Math.floor(this.position.y) - 4.5);
-    context.lineTo(Math.floor(this.position.x), Math.floor(this.position.y) + 4.5);
+    context.moveTo(Math.floor(this.position.x) - 4, Math.floor(this.position.y));
+    context.lineTo(Math.floor(this.position.x) + 5, Math.floor(this.position.y));
+    context.moveTo(Math.floor(this.position.x), Math.floor(this.position.y) - 5);
+    context.lineTo(Math.floor(this.position.x), Math.floor(this.position.y) + 4);
     context.stroke();
   }
 
   draw(context) {
     const [frameKey] = this.animations[this.currentState][this.animationFrame];
-    const [
+    const [[
       [x, y, width, height], 
       [originX, originY],
-    ] = this.frames.get(frameKey);
+    ]]= this.frames.get(frameKey);
 
     context.scale(this.direction, 1);
     context.drawImage(

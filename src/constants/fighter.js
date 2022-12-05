@@ -16,8 +16,8 @@ export const FighterState = {
 }
 
 export const PushBox = {
-  IDLE:[],
-  JUMP:[],
-  BEND:[],
-  CROUCH:[],
+  IDLE:[-16, -55, 20, 50],
+  JUMP:[-16, -91, 32, 66],
+  BEND:[-16, -58, 32, 58],
+  CROUCH:[-16, -50, 32, 50],
 }
