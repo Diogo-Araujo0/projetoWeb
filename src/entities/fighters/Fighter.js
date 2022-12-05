@@ -27,7 +27,7 @@ export class Fighter {
         validForm: [
           undefined,
           FighterState.IDLE, FighterState.WALK_FORWARD, FighterState.WALK_BACKWARD,
-          FighterState.JUMP_UP,
+          FighterState.JUMP_UP, FighterState.JUMP_FORWARD,FighterState.JUMP_BACKWARD,
           FighterState.CROUCH_UP,
         ],
       },
@@ -134,6 +134,7 @@ export class Fighter {
 
   handleWalkForwardState(){
     if(!control.isForward(this.playerId,this.direction)) this.changeState(FighterState.IDLE);
+    if(control.isUp(this.playerId)) this.changeState(FighterState.JUMP_FORWARD);
     if(control.isDown(this.playerId)) this.changeState(FighterState.CROUCH_DOWN);
 
 
@@ -141,6 +142,7 @@ export class Fighter {
 
   handleWalBackwardState(){
     if(!control.isBackward(this.playerId,this.direction)) this.changeState(FighterState.IDLE);
+    if(control.isUp(this.playerId)) this.changeState(FighterState.JUMP_BACKWARD);
     if(control.isDown(this.playerId)) this.changeState(FighterState.CROUCH_DOWN);
   }
 
@@ -186,10 +188,8 @@ export class Fighter {
   }
 
   updateAnimation(time){
-
     const animation = this.animations[this.currentState];
     const [, frameDelay] = animation[this.animationFrame];
-
     if (time.previous > this.animationTimer + frameDelay) {
       this.animationTimer = time.previous;
       if(frameDelay > 0){

@@ -39,8 +39,8 @@ export class Naruto extends Fighter {
       //Jump Up
 
       ["jump-up-1", [[24, 689, 34, 63], [17, 63]]],
-      ["jump-up-2", [[83, 689, 34, 63], [17, 63]]],
-      ["jump-up-3", [[140, 688, 49, 64],[24, 64]]],
+      ["jump-up-2", [[73, 689, 34, 63], [17, 63]]],
+      ["jump-up-3", [[140, 688, 49, 65],[24, 64]]],
       ["jump-up-4", [[203, 689, 49, 63],[24, 64]]],
       ["jump-up-5", [[277, 720, 31, 43],[16, 43]]],
 
@@ -56,7 +56,7 @@ export class Naruto extends Fighter {
       
       
     this.animations = {
-      [FighterState.IDLE]: [['idle-1', 68],['idle-2',68], ['idle-3',68], ['idle-4',68], ['idle-5',68], ['idle-6',68]],
+      [FighterState.IDLE]: [['idle-1', 85],['idle-2',85], ['idle-3',85], ['idle-4',85], ['idle-5',85], ['idle-6',85]],
       [FighterState.WALK_FORWARD]: [['forwards-1', 68],['forwards-2',68], ['forwards-3',68], ['forwards-4',68], ['forwards-5',68], ['forwards-6',68]],
       [FighterState.WALK_BACKWARD]: [['backwards-1', 68],['backwards-2',68], ['backwards-3',68], ['backwards-4',68], ['backwards-5',68], ['backwards-6',68]],
       [FighterState.JUMP_UP]: [['jump-up-1', 180],['jump-up-2',180], ['jump-up-3',130], ['jump-up-4',100],['jump-up-5',-1]],
