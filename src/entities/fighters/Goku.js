@@ -20,21 +20,21 @@ export class Goku extends Fighter {
 
       //Forward
 
-      ["forwards-1", [[[23, 611, 56, 56], [28, 56]], PushBox.IDLE]],
-      ["forwards-2", [[[91, 610, 42, 56], [21, 56]], PushBox.IDLE]],
-      ["forwards-3", [[[142, 610, 50, 56], [25, 56]], PushBox.IDLE]],
-      ["forwards-4", [[[201, 611, 55, 57], [27, 57]], PushBox.IDLE]],
-      ["forwards-5", [[[270, 610, 47, 59], [23, 59]], PushBox.IDLE]],
-      ["forwards-6", [[[329, 609, 51, 58], [26, 58]], PushBox.IDLE]],
+      ["forwards-1", [[[23, 611, 56, 56], [28, 56]], PushBox.WALKF]],
+      ["forwards-2", [[[91, 610, 42, 56], [21, 56]], PushBox.WALKF]],
+      ["forwards-3", [[[142, 610, 50, 56], [25, 56]], PushBox.WALKF]],
+      ["forwards-4", [[[201, 611, 55, 57], [27, 57]], PushBox.WALKF]],
+      ["forwards-5", [[[270, 610, 47, 59], [23, 59]], PushBox.WALKF]],
+      ["forwards-6", [[[329, 609, 51, 58], [26, 58]], PushBox.WALKF]],
    
       //Backward
 
-      ["backwards-1", [[[805, 610, 51, 57], [25, 57]], PushBox.IDLE]],
-      ["backwards-2", [[[748, 610, 47, 59], [24, 59]], PushBox.IDLE]],
-      ["backwards-3", [[[684, 611, 55, 57], [27, 57]], PushBox.IDLE]],
-      ["backwards-4", [[[622, 610, 50, 56], [25, 56]], PushBox.IDLE]],
-      ["backwards-5", [[[569, 610, 42, 56], [21, 56]], PushBox.IDLE]],
-      ["backwards-6", [[[503, 611, 56, 56], [28, 56]], PushBox.IDLE]],
+      ["backwards-1", [[[805, 610, 51, 57], [25, 57]], PushBox.WALKB]],
+      ["backwards-2", [[[748, 610, 47, 59], [24, 59]], PushBox.WALKB]],
+      ["backwards-3", [[[684, 611, 55, 57], [27, 57]], PushBox.WALKB]],
+      ["backwards-4", [[[622, 610, 50, 56], [25, 56]], PushBox.WALKB]],
+      ["backwards-5", [[[569, 610, 42, 56], [21, 56]], PushBox.WALKB]],
+      ["backwards-6", [[[503, 611, 56, 56], [28, 56]], PushBox.WALKB]],
 
       //Jump Up
 

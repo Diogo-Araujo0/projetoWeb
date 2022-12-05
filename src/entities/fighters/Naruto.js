@@ -20,21 +20,21 @@ export class Naruto extends Fighter {
 
       // Forward
 
-      ["forwards-1", [[[386, 469, 44, 48],[21, 48]], PushBox.IDLE]],
-      ["forwards-2", [[[442, 468, 58, 43],[29, 43]], PushBox.IDLE]],
-      ["forwards-3", [[[517, 467, 50, 48],[25, 48]], PushBox.IDLE]],
-      ["forwards-4", [[[581, 469, 41, 46],[20, 46]], PushBox.IDLE]],
-      ["forwards-5", [[[633, 466, 55, 45],[27, 45]], PushBox.IDLE]],
-      ["forwards-6", [[[703, 468, 52, 49],[26, 48]], PushBox.IDLE]],
+      ["forwards-1", [[[386, 469, 44, 48],[21, 48]], PushBox.WALKB]],
+      ["forwards-2", [[[442, 468, 58, 43],[29, 43]], PushBox.WALKB]],
+      ["forwards-3", [[[517, 467, 50, 48],[25, 48]], PushBox.WALKB]],
+      ["forwards-4", [[[581, 469, 41, 46],[20, 46]], PushBox.WALKB]],
+      ["forwards-5", [[[633, 466, 55, 45],[27, 45]], PushBox.WALKB]],
+      ["forwards-6", [[[703, 468, 52, 49],[26, 48]], PushBox.WALKB]],
 
       // Backward
 
-      ["backwards-1", [[[757, 351, 44, 48],[21, 48]], PushBox.IDLE]],
-      ["backwards-2", [[[687, 350, 58, 43],[29, 43]], PushBox.IDLE]],
-      ["backwards-3", [[[620, 349, 50, 48],[25, 48]], PushBox.IDLE]],
-      ["backwards-4", [[[565, 351, 41, 46],[20, 46]], PushBox.IDLE]],
-      ["backwards-5", [[[499, 348, 55, 45],[27, 45]], PushBox.IDLE]],
-      ["backwards-6", [[[432, 350, 52, 49],[26, 48]], PushBox.IDLE]],
+      ["backwards-1", [[[757, 351, 44, 48],[21, 48]], PushBox.WALKF]],
+      ["backwards-2", [[[687, 350, 58, 43],[29, 43]], PushBox.WALKF]],
+      ["backwards-3", [[[620, 349, 50, 48],[25, 48]], PushBox.WALKF]],
+      ["backwards-4", [[[565, 351, 41, 46],[20, 46]], PushBox.WALKF]],
+      ["backwards-5", [[[499, 348, 55, 45],[27, 45]], PushBox.WALKF]],
+      ["backwards-6", [[[432, 350, 52, 49],[26, 48]], PushBox.WALKF]],
 
       //Jump Up
 
