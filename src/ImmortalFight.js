@@ -1,5 +1,5 @@
 import { Naruto } from "./entities/fighters/Naruto.js";
-import { Goku } from "./entities/fighters/Goku.js";
+import { Kakashi } from "./entities/fighters/Kakashi.js";
 import { Background } from "./entities/Background.js";
 import { FpsCounter } from "./entities/FpsCounter.js";
 import { BACKGROUND_FLOOR } from "./constants/background.js";
@@ -13,13 +13,13 @@ export class ImmortalFight{
 
     this.fighters = [
       new Naruto(104, BACKGROUND_FLOOR, FighterDirection.RIGHT,0),
-      new Goku(280, BACKGROUND_FLOOR, FighterDirection.LEFT,1),
+      new Kakashi(280, BACKGROUND_FLOOR, FighterDirection.LEFT,1),
     ];
   
     this.fighters[0].opponent = this.fighters[1];
     this.fighters[1].opponent = this.fighters[0];
     this.entities = [
-      new Background(3),
+      new Background(1),
       ...this.fighters,
       new FpsCounter(),
     ];
@@ -50,21 +50,16 @@ export class ImmortalFight{
     }
   }
 
- 
   frame(time) {
     window.requestAnimationFrame(this.frame.bind(this));
     this.frameTime = {
       secondsPassed: (time - this.frameTime.previous) / 1000,
       previous: time,
     };
-
-    
     this.update();
     this.draw();
-   
   }
 
-  
   start(){
     registerKeyboardEvents();
     window.requestAnimationFrame(this.frame.bind(this));
