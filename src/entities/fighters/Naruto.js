@@ -8,10 +8,10 @@ export class Naruto extends Fighter {
     this.image = document.querySelector('img[alt="naruto"]');
 
     const pushBox = {
-      IDLE:[-10, -64, 20, 65],
-      JUMP:[-16, -65, 32, 66],
+      IDLE:[-10, -57, 20, 58],
+      JUMP:[-10, -57, 20, 58],
       BEND:[-16, -58, 32, 58],  
-      CROUCH:[-16, -45, 32, 44],
+      CROUCH:[-10, -45, 20, 46],
     }
 
     this.frames = new Map([

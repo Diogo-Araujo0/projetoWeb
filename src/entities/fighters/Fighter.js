@@ -150,10 +150,15 @@ export class Fighter {
   }
 
   handleIdleState(){
-    if(control.isUp(this.playerId)) this.changeState(FighterState.JUMP_UP);
-    if(control.isDown(this.playerId)) this.changeState(FighterState.CROUCH_DOWN);
-    if(control.isBackward(this.playerId,this.direction)) this.changeState(FighterState.WALK_BACKWARD);
-    if(control.isForward(this.playerId,this.direction)) this.changeState(FighterState.WALK_FORWARD);
+    if(control.isUp(this.playerId)) {
+      this.changeState(FighterState.JUMP_UP)
+    }else if(control.isDown(this.playerId)) {
+      this.changeState(FighterState.CROUCH_DOWN)
+    }else if(control.isBackward(this.playerId,this.direction)) {
+      this.changeState(FighterState.WALK_BACKWARD)
+    }else if(control.isForward(this.playerId,this.direction)) {
+      this.changeState(FighterState.WALK_FORWARD)
+    }
 
     const newDirection = this.getDirection()
     if(newDirection != this.direction){
@@ -162,17 +167,25 @@ export class Fighter {
   }
 
   handleWalkForwardState(){
-    if(!control.isForward(this.playerId,this.direction)) this.changeState(FighterState.IDLE);
-    if(control.isUp(this.playerId)) this.changeState(FighterState.JUMP_FORWARD);
-    if(control.isDown(this.playerId)) this.changeState(FighterState.CROUCH_DOWN);
+    if(!control.isForward(this.playerId,this.direction)){
+      this.changeState(FighterState.IDLE)
+    }else if(control.isUp(this.playerId)) {
+      this.changeState(FighterState.JUMP_FORWARD)
+    }else if(control.isDown(this.playerId)) {
+      this.changeState(FighterState.CROUCH_DOWN)
+    }
 
     this.direction = this.getDirection()
   }
 
   handleWalBackwardState(){
-    if(!control.isBackward(this.playerId,this.direction)) this.changeState(FighterState.IDLE);
-    if(control.isUp(this.playerId)) this.changeState(FighterState.JUMP_BACKWARD);
-    if(control.isDown(this.playerId)) this.changeState(FighterState.CROUCH_DOWN);
+    if(!control.isBackward(this.playerId,this.direction)) {
+      this.changeState(FighterState.IDLE)
+    }else if(control.isUp(this.playerId)) {
+      this.changeState(FighterState.JUMP_BACKWARD)
+    }else if(control.isDown(this.playerId)){
+      this.changeState(FighterState.CROUCH_DOWN)
+    }
 
     this.direction = this.getDirection()
   }
@@ -182,7 +195,9 @@ export class Fighter {
   }
 
   handleCrouchState(){
-    if(!control.isDown(this.playerId)) this.changeState(FighterState.CROUCH_UP);
+    if(!control.isDown(this.playerId)) {
+      this.changeState(FighterState.CROUCH_UP)
+    }
 
     const newDirection = this.getDirection()
 
@@ -194,6 +209,11 @@ export class Fighter {
   handleCrouchDownState(){
     if(this.animations[this.currentState][this.animationFrame][1] == -2){
       this.changeState(FighterState.CROUCH);
+    }
+
+    if(!control.isDown(this.playerId)){
+      this.currentState = FighterState.CROUCH_UP
+      this.animationFrame = this.animations[FighterState.CROUCH_UP][this.animationFrame].length - this.animationFrame
     }
   }
 

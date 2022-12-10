@@ -9,9 +9,9 @@ export class Kakashi extends Fighter {
 
     const pushBox = {
       IDLE:[-10, -64, 21, 65],
-      JUMP:[-16, -65, 32, 66],
+      JUMP:[-10, -64, 21, 65],
       BEND:[-16, -58, 32, 58],
-      CROUCH:[-10, -45, 21, 50],
+      CROUCH:[-10, -45, 21, 46],
     }
 
     this.frames = new Map([
