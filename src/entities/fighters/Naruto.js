@@ -8,17 +8,15 @@ export class Naruto extends Fighter {
     this.image = document.querySelector('img[alt="naruto"]');
 
     const pushBox = {
-      IDLE:[-16, -58, 32, 58],
-      WALKF:[-20, -60 , 32, 58],
-      WALKB:[-10, -60, 35, 58],
+      IDLE:[-10, -64, 20, 65],
       JUMP:[-16, -65, 32, 66],
-      BEND:[-16, -58, 32, 58],
+      BEND:[-16, -58, 32, 58],  
       CROUCH:[-16, -45, 32, 44],
     }
 
     this.frames = new Map([
-      //idle
-
+      //idle  
+      
       ["idle-1", [[[25, 346, 43, 58],[21, 58]], pushBox.IDLE]], 
       ["idle-2", [[[82, 348, 43, 56],[21, 56]], pushBox.IDLE]],
       ["idle-3", [[[140, 349, 43, 55],[21, 55]], pushBox.IDLE]],
@@ -29,21 +27,21 @@ export class Naruto extends Fighter {
 
       // Forward
 
-      ["forwards-1", [[[386, 469, 44, 48],[21, 48]], pushBox.WALKB]],
-      ["forwards-2", [[[442, 468, 58, 43],[29, 43]], pushBox.WALKB]],
-      ["forwards-3", [[[517, 467, 50, 48],[25, 48]], pushBox.WALKB]],
-      ["forwards-4", [[[581, 469, 41, 46],[20, 46]], pushBox.WALKB]],
-      ["forwards-5", [[[633, 466, 55, 45],[27, 45]], pushBox.WALKB]],
-      ["forwards-6", [[[703, 468, 52, 49],[26, 48]], pushBox.WALKB]],
+      ["forwards-1", [[[386, 469, 44, 48],[21, 48]], pushBox.IDLE]],
+      ["forwards-2", [[[442, 468, 58, 43],[29, 43]], pushBox.IDLE]],
+      ["forwards-3", [[[517, 467, 50, 48],[25, 48]], pushBox.IDLE]],
+      ["forwards-4", [[[581, 469, 41, 46],[20, 46]], pushBox.IDLE]],
+      ["forwards-5", [[[633, 466, 55, 45],[27, 45]], pushBox.IDLE]],
+      ["forwards-6", [[[703, 468, 52, 49],[26, 48]], pushBox.IDLE]],
 
       // Backward
 
-      ["backwards-1", [[[757, 351, 44, 48],[21, 48]], pushBox.WALKF]],
-      ["backwards-2", [[[687, 350, 58, 43],[29, 43]], pushBox.WALKF]],
-      ["backwards-3", [[[620, 349, 50, 48],[25, 48]], pushBox.WALKF]],
-      ["backwards-4", [[[565, 351, 41, 46],[20, 46]], pushBox.WALKF]],
-      ["backwards-5", [[[499, 348, 55, 45],[27, 45]], pushBox.WALKF]],
-      ["backwards-6", [[[432, 350, 52, 49],[26, 48]], pushBox.WALKF]],
+      ["backwards-1", [[[757, 351, 44, 48],[21, 48]], pushBox.IDLE]],
+      ["backwards-2", [[[687, 350, 58, 43],[29, 43]], pushBox.IDLE]],
+      ["backwards-3", [[[620, 349, 50, 48],[25, 48]], pushBox.IDLE]],
+      ["backwards-4", [[[565, 351, 41, 46],[20, 46]], pushBox.IDLE]],
+      ["backwards-5", [[[499, 348, 55, 45],[27, 45]], pushBox.IDLE]],
+      ["backwards-6", [[[432, 350, 52, 49],[26, 48]], pushBox.IDLE]],
 
       //Jump Up
 
