@@ -1,6 +1,6 @@
 export class StatusBar{
   constructor(fighters){
-    this.image = document.querySelector('img[alt="misc"]');
+    this.image = document.querySelector('img[alt="overlay"]');
 
     this.time = 99;
     this.timeTimer = 0;
@@ -37,17 +37,17 @@ export class StatusBar{
     );
     context.setTransform(1, 0, 0, 1, 0, 0)
   }
+
   updateTime(time){
     if(time.previous > this.timeTimer + 664){
       if(this.time >  0) this.time -= 1;
       this.timeTimer = time.previous
     }
   }
+
   update(time){
     this.updateTime(time);
-
   }
-
 
   drawHealthBars(context){
     this.drawFrame(context,'health-bar',31,20);
