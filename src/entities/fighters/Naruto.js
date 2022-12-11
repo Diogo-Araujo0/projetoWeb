@@ -6,7 +6,7 @@ export class Naruto extends Fighter {
     super("Naruto", x, y, direction, playerId);
 
     this.image = document.querySelector('img[alt="naruto"]');
-    this.hp = 1000
+    this.hp = 0
     
 
     this.frames = new Map([
@@ -96,7 +96,9 @@ export class Naruto extends Fighter {
       [FighterState.CROUCH]: [['crouch-3',0]],
       [FighterState.CROUCH_DOWN]: [['crouch-1',30],['crouch-2',30],['crouch-3',30],['crouch-3',-2]],
       [FighterState.CROUCH_UP]: [['crouch-3',30],['crouch-2',30],['crouch-1',30],['crouch-1',-2]],
-      [FighterState.WIN]: [['win-1', 110],['win-2',110], ['win-3',110], ['win-4',110], ['win-5',110], ['win-6',110], ['win-7',110], ['win-8',110]],
+      [FighterState.WIN]: [['win-1', 110],['win-2',120], ['win-3',130], ['win-4',170], ['win-5',130], ['win-6',110], ['win-7',110], ['win-8',110]],
+      [FighterState.DEATH]: [['death-1', 180],['death-2',180], ['death-3',0]],
+
 
     };
 

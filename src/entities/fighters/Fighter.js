@@ -90,8 +90,15 @@ export class Fighter {
         ]
       },
       [FighterState.WIN]:{
-        init: () => { },
-        update: this.handleWinState.bind(this),
+        init: this.handleWinState.bind(this),
+        update: () => { },
+        validForm: [
+          FighterState.IDLE,
+        ],
+      },
+      [FighterState.DEATH]:{
+        init: this.handleDeathState.bind(this),
+        update: () => { },
         validForm: [
           FighterState.IDLE,
         ],
@@ -105,6 +112,9 @@ export class Fighter {
     this.changeState(FighterState.WIN)
   }
 
+  handleDeathState(){
+    this.changeState(FighterState.DEATH)
+  }
 
   hasCollidedWithOpponent = () => rectsOverlap(
     this.position.x + this.pushBox.x, this.position.y + this.pushBox.y,
@@ -302,6 +312,7 @@ export class Fighter {
     this.updateAnimation(time);
     this.updateBackgroundContraints(time, context);
     if(this.hp === 0){
+      this.handleDeathState()
     }
   }
 

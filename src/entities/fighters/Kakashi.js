@@ -94,6 +94,7 @@ export class Kakashi extends Fighter {
       [FighterState.CROUCH_DOWN]: [['crouch-1',30],['crouch-2',30],['crouch-2',-2]],
       [FighterState.CROUCH_UP]: [['crouch-2',30],['crouch-1',30],['crouch-1',-2]],
       [FighterState.WIN]: [ ['win-3',100], ['win-4',100], ['win-5',100], ['win-6',100], ['win-7',100]],
+      [FighterState.DEATH]: [['death-1', 180],['death-2',180], ['death-3',0]],
 
     };
 

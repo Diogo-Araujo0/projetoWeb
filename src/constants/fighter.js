@@ -13,7 +13,8 @@ export const FighterState = {
   CROUCH: 'crouch',
   CROUCH_DOWN: 'crouchDown',
   CROUCH_UP: 'crouchUp',
-  WIN: 'win'
+  WIN: 'win',
+  DEATH: 'death',
 }
 
 export const PushBox = {
