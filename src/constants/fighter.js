@@ -15,12 +15,9 @@ export const FighterState = {
   CROUCH_UP: 'crouchUp',
 }
 
-
 export const PushBox = {
-  IDLE:[-16, -60, 32, 58],
-  WALKF:[-20, -60 , 32, 58],
-  WALKB:[-10, -60, 35, 58],
-  JUMP:[-16, -65, 32, 66],
-  BEND:[-16, -58, 32, 58],
-  CROUCH:[-16, -45, 32, 44],
+  IDLE:[-10, -57, 20, 58],
+  JUMP:[-10, -57, 20, 58],
+  BEND:[-10, -57, 20, 58],  
+  CROUCH:[-10, -45, 20, 46],
 }

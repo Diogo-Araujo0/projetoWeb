@@ -1,5 +1,5 @@
 import { Fighter } from "./Fighter.js";
-import { FighterState } from "../../constants/fighter.js"
+import { FighterState, PushBox } from "../../constants/fighter.js"
 
 export class Kakashi extends Fighter {
   constructor(x, y, direction, playerId) {
@@ -7,54 +7,47 @@ export class Kakashi extends Fighter {
 
     this.image = document.querySelector('img[alt="kakashi"]');
 
-    const pushBox = {
-      IDLE:[-10, -64, 21, 65],
-      JUMP:[-10, -64, 21, 65],
-      BEND:[-16, -58, 32, 58],
-      CROUCH:[-10, -45, 21, 46],
-    }
-
     this.frames = new Map([
 
       //Idle
 
-      ["idle-1", [[[24, 356, 41, 65], [20, 64]], pushBox.IDLE]],
-      ["idle-2", [[[75, 356, 40, 65], [20, 66]], pushBox.IDLE]],
-      ["idle-3", [[[125, 359, 38, 62],[19, 62]], pushBox.IDLE]],
-      ["idle-4", [[[170, 361, 38, 60],[19, 60]], pushBox.IDLE]],
-      ["idle-5", [[[219, 359, 38, 62],[19, 62]], pushBox.IDLE]],
-      ["idle-6", [[[265, 356, 40, 65],[20, 65]], pushBox.IDLE]],
+      ["idle-1", [[[24, 356, 41, 65], [20, 64]], PushBox.IDLE]],
+      ["idle-2", [[[75, 356, 40, 65], [20, 66]], PushBox.IDLE]],
+      ["idle-3", [[[125, 359, 38, 62],[19, 62]], PushBox.IDLE]],
+      ["idle-4", [[[170, 361, 38, 60],[19, 60]], PushBox.IDLE]],
+      ["idle-5", [[[219, 359, 38, 62],[19, 62]], PushBox.IDLE]],
+      ["idle-6", [[[265, 356, 40, 65],[20, 65]], PushBox.IDLE]],
 
       //Forward
 
-      ["forwards-1", [[[23, 611, 56, 56], [28, 56]], pushBox.IDLE]],
-      ["forwards-2", [[[91, 610, 42, 56], [21, 56]], pushBox.IDLE]],
-      ["forwards-3", [[[142, 610, 50, 56], [25, 56]], pushBox.IDLE]],
-      ["forwards-4", [[[201, 611, 55, 57], [27, 57]], pushBox.IDLE]],
-      ["forwards-5", [[[270, 610, 47, 59], [23, 59]], pushBox.IDLE]],
-      ["forwards-6", [[[329, 609, 51, 58], [26, 58]], pushBox.IDLE]],
+      ["forwards-1", [[[23, 611, 56, 56], [28, 56]], PushBox.IDLE]],
+      ["forwards-2", [[[91, 610, 42, 56], [21, 56]], PushBox.IDLE]],
+      ["forwards-3", [[[142, 610, 50, 56], [25, 56]], PushBox.IDLE]],
+      ["forwards-4", [[[201, 611, 55, 57], [27, 57]], PushBox.IDLE]],
+      ["forwards-5", [[[270, 610, 47, 59], [23, 59]], PushBox.IDLE]],
+      ["forwards-6", [[[329, 609, 51, 58], [26, 58]], PushBox.IDLE]],
    
       //Backward
 
-      ["backwards-1", [[[805, 610, 51, 57], [25, 57]], pushBox.IDLE]],
-      ["backwards-2", [[[748, 610, 47, 59], [24, 59]], pushBox.IDLE]],
-      ["backwards-3", [[[684, 611, 55, 57], [27, 57]], pushBox.IDLE]],
-      ["backwards-4", [[[622, 610, 50, 56], [25, 56]], pushBox.IDLE]],
-      ["backwards-5", [[[569, 610, 42, 56], [21, 56]], pushBox.IDLE]],
-      ["backwards-6", [[[503, 611, 56, 56], [28, 56]], pushBox.IDLE]],
+      ["backwards-1", [[[805, 610, 51, 57], [25, 57]], PushBox.IDLE]],
+      ["backwards-2", [[[748, 610, 47, 59], [24, 59]], PushBox.IDLE]],
+      ["backwards-3", [[[684, 611, 55, 57], [27, 57]], PushBox.IDLE]],
+      ["backwards-4", [[[622, 610, 50, 56], [25, 56]], PushBox.IDLE]],
+      ["backwards-5", [[[569, 610, 42, 56], [21, 56]], PushBox.IDLE]],
+      ["backwards-6", [[[503, 611, 56, 56], [28, 56]], PushBox.IDLE]],
 
       //Jump Up
 
-      ["jump-up-1", [[[24, 850, 34, 67], [16, 67]], pushBox.JUMP]],
-      ["jump-up-2", [[[69, 850, 34, 67], [16, 67]], pushBox.JUMP]],
-      ["jump-up-3", [[[137, 855, 44, 62],[22, 62]], pushBox.JUMP]],
-      ["jump-up-4", [[[190, 855, 44, 62],[22, 62]], pushBox.JUMP]],
-      ["jump-up-5", [[[252, 884, 31, 43],[16, 43]], pushBox.JUMP]],
+      ["jump-up-1", [[[24, 850, 34, 67], [16, 67]], PushBox.JUMP]],
+      ["jump-up-2", [[[69, 850, 34, 67], [16, 67]], PushBox.JUMP]],
+      ["jump-up-3", [[[137, 855, 44, 62],[22, 62]], PushBox.JUMP]],
+      ["jump-up-4", [[[190, 855, 44, 62],[22, 62]], PushBox.JUMP]],
+      ["jump-up-5", [[[252, 884, 31, 43],[16, 43]], PushBox.JUMP]],
 
       //crouch
 
-      ["crouch-1", [[[22, 733, 37, 56],[18, 56]], pushBox.IDLE]],
-      ["crouch-2", [[[72, 747, 31, 43],[15, 43]], pushBox.CROUCH]],
+      ["crouch-1", [[[22, 733, 37, 56],[18, 56]], PushBox.IDLE]],
+      ["crouch-2", [[[72, 747, 31, 43],[15, 43]], PushBox.CROUCH]],
 
 
 
