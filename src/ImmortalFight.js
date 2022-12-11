@@ -4,17 +4,14 @@ import { Background } from "./entities/Background.js";
 import { FpsCounter } from "./entities/FpsCounter.js";
 import { BACKGROUND_FLOOR } from "./constants/background.js";
 import { FighterDirection } from "./constants/fighter.js";
-import { registerKeyboardEvents } from "./InputHandler.js";
+import { registerKeyboardEvents, disableKeys } from "./InputHandler.js";
 import { StatusBar } from './entities/overlays/StatusBar.js'
 import { Icons } from './entities/overlays/Icons.js'
 
-
-
 export class ImmortalFight{
-
   constructor(){
     this.context = this.getContext();
-
+    this.isOver = false;
     this.fighters = [
       new Naruto(104, BACKGROUND_FLOOR, FighterDirection.RIGHT,0),
       new Kakashi(280, BACKGROUND_FLOOR, FighterDirection.LEFT,1),
@@ -47,6 +44,14 @@ export class ImmortalFight{
   update(){
     for (const entity of this.entities) {
       entity.update(this.frameTime, this.context);
+    }
+    if(this.entities[4].time === 0 || this.entities[5].fighters[0].hp === 0 || this.entities[5].fighters[1].hp === 0){
+      disableKeys()
+      if(this.entities[5].fighters[0].hp === 0)
+        this.entities[4].changeDeadStatus(this.entities[5].fighters[0].playerId)
+      else if(this.entities[5].fighters[1].hp === 0){
+        this.entities[4].changeDeadStatus(this.entities[5].fighters[1].playerId)
+      }
     }
   }
 

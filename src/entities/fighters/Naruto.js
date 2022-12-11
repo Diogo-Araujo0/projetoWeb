@@ -6,7 +6,7 @@ export class Naruto extends Fighter {
     super("Naruto", x, y, direction, playerId);
 
     this.image = document.querySelector('img[alt="naruto"]');
-
+    this.hp = 100
     
 
     this.frames = new Map([

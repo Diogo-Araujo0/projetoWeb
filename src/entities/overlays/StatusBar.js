@@ -2,10 +2,10 @@ export class StatusBar{
   constructor(fighters){
     this.image = document.querySelector('img[alt="overlay"]');
 
-    this.time = 99;
+    this.time = 10;
     this.timeTimer = 0;
     this.fighters = fighters;
-
+    this.isOver = false;
     this.frames = new Map([
       ['health-bar', [16,18,145,11]],
 
@@ -40,8 +40,13 @@ export class StatusBar{
 
   updateTime(time){
     if(time.previous > this.timeTimer + 664){
-      if(this.time >  0) this.time -= 1;
+      if(this.time >  0) {
+        this.time -= 1
+      }else{
+        this.isOver = true
+      }
       this.timeTimer = time.previous
+      
     }
   }
 
@@ -64,5 +69,9 @@ export class StatusBar{
   draw(context){
     this.drawHealthBars(context);
     this.drawTime(context);
+  }
+
+  changeDeadStatus(playerId){
+    console.log(playerId)
   }
 }

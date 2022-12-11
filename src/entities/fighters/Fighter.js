@@ -289,6 +289,8 @@ export class Fighter {
     this.states[this.currentState].update(time,context);
     this.updateAnimation(time);
     this.updateBackgroundContraints(time, context);
+    if(this.hp === 0){
+    }
   }
 
   drawDebug(context) {

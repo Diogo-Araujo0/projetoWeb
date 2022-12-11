@@ -18,6 +18,14 @@ export function registerKeyboardEvents(){
   window.addEventListener('keyup', handleKeyUp);
 }
 
+function handleDisableKey(event){
+  heldKeys.delete(event.code);
+}
+
+export function disableKeys(){
+  window.addEventListener('keydown', handleDisableKey);
+}
+
 export const isKeyDown = (code) => heldKeys.has(code);
 export const isKeyUp = (code) => !heldKeys.has(code);
 
