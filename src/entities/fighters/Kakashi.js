@@ -6,7 +6,7 @@ export class Kakashi extends Fighter {
     super("Kakashi", x, y, direction, playerId);
 
     this.image = document.querySelector('img[alt="kakashi"]');
-    this.hp = 100
+    this.hp = 0
     this.frames = new Map([
 
       //Idle
@@ -93,6 +93,7 @@ export class Kakashi extends Fighter {
       [FighterState.CROUCH]: [['crouch-2',0]],
       [FighterState.CROUCH_DOWN]: [['crouch-1',30],['crouch-2',30],['crouch-2',-2]],
       [FighterState.CROUCH_UP]: [['crouch-2',30],['crouch-1',30],['crouch-1',-2]],
+      [FighterState.WIN]: [ ['win-3',100], ['win-4',100], ['win-5',100], ['win-6',100], ['win-7',100]],
 
     };
 

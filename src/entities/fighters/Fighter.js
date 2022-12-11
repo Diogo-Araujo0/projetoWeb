@@ -89,10 +89,22 @@ export class Fighter {
           FighterState.CROUCH,
         ]
       },
+      [FighterState.WIN]:{
+        init: () => { },
+        update: this.handleWinState.bind(this),
+        validForm: [
+          FighterState.IDLE,
+        ],
+      },
     }
 
     this.changeState(FighterState.IDLE);  
   }
+
+  handleWinState(){
+    this.changeState(FighterState.WIN)
+  }
+
 
   hasCollidedWithOpponent = () => rectsOverlap(
     this.position.x + this.pushBox.x, this.position.y + this.pushBox.y,

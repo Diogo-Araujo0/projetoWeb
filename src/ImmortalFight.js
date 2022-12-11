@@ -47,10 +47,15 @@ export class ImmortalFight{
     }
     if(this.entities[4].time === 0 || this.entities[5].fighters[0].hp === 0 || this.entities[5].fighters[1].hp === 0){
       disableKeys()
-      if(this.entities[5].fighters[0].hp === 0)
-        this.entities[4].changeDeadStatus(this.entities[5].fighters[0].playerId)
+      if(this.entities[5].fighters[0].hp === 0){
+        this.entities[4].changeGameResult(this.entities[5].fighters[1].playerId)
+        this.entities[5].fighters[1].handleWinState()
+      }
       else if(this.entities[5].fighters[1].hp === 0){
-        this.entities[4].changeDeadStatus(this.entities[5].fighters[1].playerId)
+        this.entities[4].changeGameResult(this.entities[5].fighters[0].playerId)
+        this.entities[5].fighters[0].handleWinState()
+      }else{
+        this.entities[4].changeGameResult(-1)
       }
     }
   }

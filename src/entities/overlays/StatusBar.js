@@ -1,11 +1,13 @@
+import {GAME_DURATION} from '../../constants/game.js';
+
 export class StatusBar{
   constructor(fighters){
     this.image = document.querySelector('img[alt="overlay"]');
 
-    this.time = 10;
+    this.time = GAME_DURATION;
     this.timeTimer = 0;
     this.fighters = fighters;
-    this.isOver = false;
+    this.result = -2;
     this.frames = new Map([
       ['health-bar', [16,18,145,11]],
 
@@ -25,10 +27,6 @@ export class StatusBar{
       ['fight', [16,168,63,18]],
       ['time-over', [352,112,65,30]],
       ['draw-game', [427,114,59,26]],
-
-
-
-    
     ]);
   }
 
@@ -67,17 +65,41 @@ export class StatusBar{
   }
 
   drawTime(context){
-    const timeString = String(this.time).padStart(2, '00');
-    this.drawFrame(context, `time-${timeString.charAt(0)}`, 178,33);
-    this.drawFrame(context, `time-${timeString.charAt(1)}`, 194,33);
+    if(this.time > 0){
+      const timeString = String(this.time).padStart(2, '00');
+      this.drawFrame(context, `time-${timeString.charAt(0)}`, 178,33);
+      this.drawFrame(context, `time-${timeString.charAt(1)}`, 194,33);
+    }
+  }
+
+  drawResult(context){
+    if(this.result === -1){
+      this.drawFrame(context, `draw-game`, 163, 107)
+    }
+    else if(this.result === 0){
+        console.log("Player 1 win")
+    }else{
+      console.log("Player 2 win")
+    }
   }
   
   draw(context){
     this.drawHealthBars(context);
     this.drawTime(context);
+    if(this.time <= 0){
+      this.drawFrame(context, `time-over`, 161, 33)
+    }
+
+    if(this.time >= GAME_DURATION - 1){
+      this.drawFrame(context, `fight`, 163, 106)
+    }
+
+    if (this.result != -2){
+      this.drawResult(context)
+    }
   }
 
-  changeDeadStatus(playerId){
-    console.log(playerId)
+  changeGameResult(playerId){
+    this.result = playerId
   }
 }
