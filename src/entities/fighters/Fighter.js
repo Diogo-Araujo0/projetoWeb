@@ -248,11 +248,11 @@ export class Fighter {
   updateBackgroundContraints(time, context){
     if(this.hasCollidedWithOpponent()){
       if(this.position.x <= this.opponent.position.x ){
-        /*this.position.x = Math.max(
+        this.position.x = Math.max(
           (this.opponent.position.x + this.opponent.pushBox.x) - (this.pushBox.x + this.pushBox.width),
           this.pushBox.width, 
-        );*/
-        this.position.x = (this.opponent.position.x + this.opponent.pushBox.x) - (this.pushBox.x + this.pushBox.width)
+        );
+        //this.position.x = (this.opponent.position.x + this.opponent.pushBox.x) - (this.pushBox.x + this.pushBox.width)
         if([
           FighterState.IDLE, FighterState.CROUCH, FighterState.JUMP_UP, FighterState.JUMP_FORWARD, FighterState.JUMP_BACKWARD,
         ].includes(this.opponent.currentState)){
@@ -261,12 +261,12 @@ export class Fighter {
       }
 
       if(this.position.x >= this.opponent.position.x){
-        /*this.position.x = Math.min(
+        this.position.x = Math.min(
           (this.opponent.position.x + this.opponent.pushBox.x + this.opponent.pushBox.width)
             + (this.pushBox.width + this.pushBox.x),
             context.canvas.width - this.pushBox.width,
-        );*/
-        this.position.x = this.opponent.position.x + this.opponent.pushBox.width
+        );
+        //this.position.x = this.opponent.position.x + this.opponent.pushBox.width
         if([
           FighterState.IDLE, FighterState.CROUCH, FighterState.JUMP_UP, FighterState.JUMP_FORWARD, FighterState.JUMP_BACKWARD,
         ].includes(this.opponent.currentState)){

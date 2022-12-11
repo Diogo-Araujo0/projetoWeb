@@ -20,7 +20,7 @@ export class ImmortalFight{
     this.fighters[0].opponent = this.fighters[1];
     this.fighters[1].opponent = this.fighters[0];
     this.entities = [
-      new Background(3),
+      new Background(6),
       ...this.fighters,
       new FpsCounter(),
       new StatusBar(this.fighters),

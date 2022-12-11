@@ -27,6 +27,21 @@ export class StatusBar{
       ['fight', [16,168,63,18]],
       ['time-over', [352,112,65,30]],
       ['draw-game', [427,114,59,26]],
+      ['number-1', [29, 101,10,10]],
+      ['number-2', [41,101,10,10]],
+      ['letter-p',[17,125,11,10]],
+      ['letter-w', [101,125,11,10]],
+      ['letter-i', [127,113,5,10]],
+      ['letter-n', [185, 113, 11,10]],
+      ['letter-k', [149,113,10,10]],
+      ['letter-a', [29,113,11,10]],
+      ['letter-r', [41,125,11,10]],
+      ['letter-u', [77,125,10,10]],
+      ['letter-t', [65,125,10,10]],
+      ['letter-o', [197,113,10,10]],
+      ['letter-s', [53,125,10,10]],
+      ['letter-h', [113,113,10,10]],
+      
     ]);
   }
 
@@ -46,8 +61,6 @@ export class StatusBar{
     if(time.previous > this.timeTimer + 664){
       if(this.time >  0) {
         this.time -= 1
-      }else{
-        this.isOver = true
       }
       this.timeTimer = time.previous
       
@@ -77,9 +90,17 @@ export class StatusBar{
       this.drawFrame(context, `draw-game`, 163, 107)
     }
     else if(this.result === 0){
-        console.log("Player 1 win")
+      this.drawFrame(context, `letter-p`, 163, 107);
+      this.drawFrame(context, `number-1`, 173,107);
+      this.drawFrame(context, `letter-w`, 195, 107);
+      this.drawFrame(context, `letter-i`, 207, 107);
+      this.drawFrame(context, `letter-n`, 214, 107);
     }else{
-      console.log("Player 2 win")
+      this.drawFrame(context, `letter-p`, 163, 107);
+      this.drawFrame(context, `number-2`, 175,107);
+      this.drawFrame(context, `letter-w`, 195, 107);
+      this.drawFrame(context, `letter-i`, 207, 107);
+      this.drawFrame(context, `letter-n`, 214, 107);
     }
   }
   

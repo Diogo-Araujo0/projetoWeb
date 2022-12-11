@@ -6,7 +6,7 @@ export class Kakashi extends Fighter {
     super("Kakashi", x, y, direction, playerId);
 
     this.image = document.querySelector('img[alt="kakashi"]');
-    this.hp = 0
+    this.hp = 10
     this.frames = new Map([
 
       //Idle

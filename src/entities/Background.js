@@ -23,7 +23,7 @@ export class Background {
     } else if (this.id === 4){
       this.animations = {
           length: 40,
-          delay: 190,
+          delay: 110,
       }
     } else if (this.id === 5){
       this.animations = {
