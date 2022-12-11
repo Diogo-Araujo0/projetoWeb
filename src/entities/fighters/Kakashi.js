@@ -49,6 +49,35 @@ export class Kakashi extends Fighter {
       ["crouch-1", [[[22, 733, 37, 56],[18, 56]], PushBox.IDLE]],
       ["crouch-2", [[[72, 747, 31, 43],[15, 43]], PushBox.CROUCH]],
 
+      //death
+      ["death-1", [[[171, 1127, 57, 46],[28, 46]], PushBox.IDLE]],
+      ["death-2", [[[241, 1146, 70, 27],[35, 27]], PushBox.IDLE]],
+      ["death-3", [[[321, 1153, 69, 24],[35, 25]], PushBox.IDLE]],
+
+      //win
+
+      ["win-1", [[[33, 5014, 39, 58],[19, 58]], PushBox.IDLE]],
+      ["win-2", [[[83, 5010, 33, 62],[16, 62]], PushBox.IDLE]],
+      ["win-3", [[[129, 5004, 25, 68],[12, 68]], PushBox.IDLE]],
+      ["win-4", [[[169, 5004, 24, 68],[12, 68]], PushBox.IDLE]],
+      ["win-5", [[[205, 5004, 24, 68],[12, 68]], PushBox.IDLE]],
+      ["win-6", [[[242, 5004, 25, 68],[12, 68]], PushBox.IDLE]],
+      ["win-7", [[[278, 5004, 26, 67],[12, 67]], PushBox.IDLE]],
+      ["win-8", [[[314, 5004, 28, 68],[12, 68]], PushBox.IDLE]],
+      ["win-9", [[[353, 5010, 33, 62],[16, 62]], PushBox.IDLE]],
+      ["win-10", [[[394, 5014, 40, 48],[19, 48]], PushBox.IDLE]],
+      ["win-11", [[[444, 5019, 46, 53],[23, 53]], PushBox.IDLE]],
+ 
+
+    
+    
+      //normal attack
+    
+      ["normalAttack-1", [[[641, 1357, 52, 62],[26, 62]], PushBox.IDLE]],
+      ["normalAttack-2", [[[703, 1357, 46, 62],[22, 62]], PushBox.IDLE]],
+      ["normalAttack-3", [[[760, 1357, 54, 62],[27, 62]], PushBox.IDLE]],
+      ["normalAttack-4", [[[823, 1357, 45, 62],[22, 62]], PushBox.IDLE]],
+
 
 
     ]);

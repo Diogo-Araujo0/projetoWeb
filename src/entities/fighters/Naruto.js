@@ -53,6 +53,37 @@ export class Naruto extends Fighter {
       ["crouch-2", [[[79, 588, 31, 43],[16, 43]], PushBox.BEND]],
       ["crouch-3", [[[126, 588, 31, 43],[15, 43]], PushBox.CROUCH]],
 
+
+      //death
+      ["death-1", [[[172, 820, 44, 58],[22, 48]], PushBox.IDLE]],
+      ["death-2", [[[231, 840, 57, 28],[28, 28]], PushBox.IDLE]],
+      ["death-3", [[[302, 849, 61, 21],[30, 22]], PushBox.IDLE]],
+
+     //win
+
+     ["win-1", [[[32, 5573, 46, 56],[23, 56]], PushBox.IDLE]],
+     ["win-2", [[[93, 5583, 48, 48],[24, 62]], PushBox.IDLE]],
+     ["win-3", [[[152, 5559, 46, 72],[23, 72]], PushBox.IDLE]],
+     ["win-4", [[[205, 5543, 36, 89],[18, 89]], PushBox.IDLE]],
+     ["win-5", [[[254, 5549, 33, 83],[17, 83]], PushBox.IDLE]],
+     ["win-6", [[[300, 5572, 30, 60],[15, 60]], PushBox.IDLE]],
+     ["win-7", [[[346, 5582, 31, 50],[16, 50]], PushBox.IDLE]],
+     ["win-8", [[[391, 5583, 29, 49],[15, 49]], PushBox.IDLE]],
+
+
+      //normal attack
+
+      ["normalAttack-1", [[[595, 933, 41, 56],[20, 56]], PushBox.IDLE]],
+      ["normalAttack-2", [[[650, 937, 56, 52],[28, 52]], PushBox.IDLE]],
+      ["normalAttack-3", [[[719, 935, 57, 54],[27, 54]], PushBox.IDLE]],
+      ["normalAttack-4", [[[790, 940, 49, 49],[25, 49]], PushBox.IDLE]],
+
+
+
+
+
+
+
     ]);
       
     this.animations = {
