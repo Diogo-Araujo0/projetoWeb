@@ -37,23 +37,32 @@ export class StatusBar{
     );
     context.setTransform(1, 0, 0, 1, 0, 0)
   }
-
-  drawHealthBars(context){
-    
+  updateTime(time){
+    if(time.previous > this.timeTimer + 664){
+      if(this.time >  0) this.time -= 1;
+      this.timeTimer = time.previous
+    }
   }
   update(time){
+    this.updateTime(time);
 
   }
 
-  draw(context){
+
+  drawHealthBars(context){
     this.drawFrame(context,'health-bar',31,20);
     this.drawFrame(context,'ko-white',176,18);
     this.drawFrame(context,'health-bar',353 ,20 ,-1);
+  }
 
+  drawTime(context){
     const timeString = String(this.time).padStart(2, '00');
     this.drawFrame(context, `time-${timeString.charAt(0)}`, 178,33);
     this.drawFrame(context, `time-${timeString.charAt(1)}`, 194,33);
-    
-
+  }
+  
+  draw(context){
+    this.drawHealthBars(context);
+    this.drawTime(context);
   }
 }

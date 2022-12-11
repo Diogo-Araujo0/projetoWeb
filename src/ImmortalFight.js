@@ -6,6 +6,9 @@ import { BACKGROUND_FLOOR } from "./constants/background.js";
 import { FighterDirection } from "./constants/fighter.js";
 import { registerKeyboardEvents } from "./InputHandler.js";
 import { StatusBar } from './entities/overlays/StatusBar.js'
+import { Icons } from './entities/overlays/Icons.js'
+
+
 
 export class ImmortalFight{
 
@@ -24,6 +27,7 @@ export class ImmortalFight{
       ...this.fighters,
       new FpsCounter(),
       new StatusBar(this.fighters),
+      new Icons(this.fighters),
     ];
   
     this.frameTime = {
