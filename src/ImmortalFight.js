@@ -45,13 +45,13 @@ export class ImmortalFight{
     for (const entity of this.entities) {
       entity.update(this.frameTime, this.context);
     }
-    if(this.entities[4].time === 0 || this.entities[5].fighters[0].hp === 0 || this.entities[5].fighters[1].hp === 0){
+    if(this.entities[4].time === 0 || this.entities[5].fighters[0].hp <= 0 || this.entities[5].fighters[1].hp <= 0){
       disableKeys()
-      if(this.entities[5].fighters[0].hp === 0){
+      if(this.entities[5].fighters[0].hp <= 0){
         this.entities[4].changeGameResult(this.entities[5].fighters[1].playerId)
         this.entities[5].fighters[1].handleWinState()
       }
-      else if(this.entities[5].fighters[1].hp === 0){
+      else if(this.entities[5].fighters[1].hp <= 0){
         this.entities[4].changeGameResult(this.entities[5].fighters[0].playerId)
         this.entities[5].fighters[0].handleWinState()
       }else{
