@@ -7,6 +7,7 @@ import { FighterDirection } from "./constants/fighter.js";
 import { registerKeyboardEvents, disableKeys } from "./InputHandler.js";
 import { StatusBar } from './entities/overlays/StatusBar.js'
 import { Icons } from './entities/overlays/Icons.js'
+import {GAME_RESULT} from './constants/game.js'
 
 export class ImmortalFight{
   constructor(){
@@ -47,15 +48,18 @@ export class ImmortalFight{
     }
     if(this.entities[4].time === 0 || this.entities[5].fighters[0].hp <= 0 || this.entities[5].fighters[1].hp <= 0){
       disableKeys()
-      if(this.entities[5].fighters[0].hp <= 0){
-        this.entities[4].changeGameResult(this.entities[5].fighters[1].playerId)
+      if(this.entities[5].fighters[0].hp <= 0 && this.entities[5].fighters[1].hp <= 0){
+        this.entities[4].changeGameResult(GAME_RESULT.DRAW)
+      }
+      else if(this.entities[5].fighters[0].hp <= 0){
+        this.entities[4].changeGameResult(GAME_RESULT.WIN, this.entities[5].fighters[1].name)
         this.entities[5].fighters[1].handleWinState()
       }
       else if(this.entities[5].fighters[1].hp <= 0){
-        this.entities[4].changeGameResult(this.entities[5].fighters[0].playerId)
+        this.entities[4].changeGameResult(GAME_RESULT.WIN, this.entities[5].fighters[0].name)
         this.entities[5].fighters[0].handleWinState()
       }else{
-        this.entities[4].changeGameResult(-1)
+        this.entities[4].changeGameResult(GAME_RESULT.DRAW)
       }
     }
   }

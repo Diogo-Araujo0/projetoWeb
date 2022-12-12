@@ -33,6 +33,7 @@ export const isLeft = (id) => isKeyDown(controls[id].keyboard[Control.LEFT]);
 export const isRight = (id) => isKeyDown(controls[id].keyboard[Control.RIGHT]);
 export const isUp = (id) => isKeyDown(controls[id].keyboard[Control.UP]);
 export const isDown = (id) => isKeyDown(controls[id].keyboard[Control.DOWN]);
+export const isAttacking = (id) => isKeyDown(controls[id].keyboard[Control.ATTACK]);
 
 export const isForward = (id,direction) => direction == FighterDirection.RIGHT ? isRight(id) : isLeft(id);
 export const isBackward = (id,direction) => direction == FighterDirection.LEFT ? isRight(id) :isLeft(id);

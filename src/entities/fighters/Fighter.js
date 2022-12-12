@@ -30,7 +30,7 @@ export class Fighter {
           undefined,
           FighterState.IDLE, FighterState.WALK_FORWARD, FighterState.WALK_BACKWARD,
           FighterState.JUMP_UP, FighterState.JUMP_FORWARD,FighterState.JUMP_BACKWARD,
-          FighterState.CROUCH_UP,
+          FighterState.CROUCH_UP, FighterState.ATTACK,
         ],
       },
       [FighterState.WALK_FORWARD]:{
@@ -103,17 +103,16 @@ export class Fighter {
           FighterState.IDLE,
         ],
       },
+      [FighterState.ATTACK]:{
+        init: () => { },
+        update: this.handleAttackState.bind(this),
+        validForm: [
+          FighterState.IDLE,
+        ],
+      },
     }
-
+    
     this.changeState(FighterState.IDLE);  
-  }
-
-  handleWinState(){
-    this.changeState(FighterState.WIN)
-  }
-
-  handleDeathState(){
-    this.changeState(FighterState.DEATH)
   }
 
   hasCollidedWithOpponent = () => rectsOverlap(
@@ -165,7 +164,6 @@ export class Fighter {
     }
   }
 
-
   handleIdleInit(){
     this.velocity.x = 0;
     this.velocity.y = 0;
@@ -180,6 +178,8 @@ export class Fighter {
       this.changeState(FighterState.WALK_BACKWARD)
     }else if(control.isForward(this.playerId,this.direction)) {
       this.changeState(FighterState.WALK_FORWARD)
+    }else if(control.isAttacking(this.playerId)) {
+      this.changeState(FighterState.ATTACK)
     }
 
     const newDirection = this.getDirection()
@@ -243,6 +243,20 @@ export class Fighter {
     if(this.animations[this.currentState][this.animationFrame][1] == -2){
       this.changeState(FighterState.IDLE);
     }
+  }
+
+  handleWinState(){
+    this.changeState(FighterState.WIN)
+  }
+
+  handleAttackState(){
+    if(this.animations[this.currentState][this.animationFrame][1] == -2){
+      this.changeState(FighterState.IDLE);
+    }
+  }
+
+  handleDeathState(){
+    this.changeState(FighterState.DEATH)
   }
 
   updateBackgroundContraints(time, context){

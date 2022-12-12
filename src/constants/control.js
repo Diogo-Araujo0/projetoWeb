@@ -3,6 +3,7 @@ export const Control={
   RIGHT: 'right',
   UP: 'up',
   DOWN: 'down',
+  ATTACK: 'attack',
 };
 
 export const controls = [
@@ -12,6 +13,7 @@ export const controls = [
       [Control.RIGHT]: 'KeyD',
       [Control.UP]: 'KeyW',
       [Control.DOWN]: 'KeyS',
+      [Control.ATTACK]: 'KeyC',
     }
   },
   {
@@ -20,6 +22,7 @@ export const controls = [
       [Control.RIGHT]: 'ArrowRight',
       [Control.UP]: 'ArrowUp',
       [Control.DOWN]: 'ArrowDown',
+      [Control.ATTACK]: 'KeyP',
     }
   },
 ];

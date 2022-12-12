@@ -1,4 +1,4 @@
-import {GAME_DURATION} from '../../constants/game.js';
+import {GAME_DURATION, GAME_RESULT} from '../../constants/game.js';
 
 export class StatusBar{
   constructor(fighters){
@@ -7,7 +7,9 @@ export class StatusBar{
     this.time = GAME_DURATION;
     this.timeTimer = 0;
     this.fighters = fighters;
-    this.result = -2;
+    this.result = -1;
+    this.winnerName = '';
+    
     this.frames = new Map([
       ['health-bar', [16,18,145,11]],
 
@@ -86,21 +88,33 @@ export class StatusBar{
   }
 
   drawResult(context){
-    if(this.result === -1){
+    if(this.result === GAME_RESULT.DRAW){
       this.drawFrame(context, `draw-game`, 163, 107)
     }
-    else if(this.result === 0){
-      this.drawFrame(context, `letter-p`, 163, 107);
-      this.drawFrame(context, `number-1`, 173,107);
-      this.drawFrame(context, `letter-w`, 195, 107);
-      this.drawFrame(context, `letter-i`, 207, 107);
-      this.drawFrame(context, `letter-n`, 214, 107);
-    }else{
-      this.drawFrame(context, `letter-p`, 163, 107);
-      this.drawFrame(context, `number-2`, 175,107);
-      this.drawFrame(context, `letter-w`, 195, 107);
-      this.drawFrame(context, `letter-i`, 207, 107);
-      this.drawFrame(context, `letter-n`, 214, 107);
+    else if(this.result === GAME_RESULT.WIN){
+      if(this.winnerName == "Naruto"){
+        this.drawFrame(context, `letter-n`, 142, 107);
+        this.drawFrame(context, `letter-a`, 153, 107);
+        this.drawFrame(context, `letter-r`, 164, 107);
+        this.drawFrame(context, `letter-u`, 174, 107);
+        this.drawFrame(context, `letter-t`, 184, 107);
+        this.drawFrame(context, `letter-o`, 194, 107);
+        this.drawFrame(context, `letter-w`, 215, 107);
+        this.drawFrame(context, `letter-i`, 226, 107);
+        this.drawFrame(context, `letter-n`, 231, 107);
+      }
+      else if(this.winnerName == "Kakashi"){
+        this.drawFrame(context, `letter-k`, 142, 107);
+        this.drawFrame(context, `letter-a`, 152, 107);
+        this.drawFrame(context, `letter-k`, 163, 107);
+        this.drawFrame(context, `letter-a`, 173, 107);
+        this.drawFrame(context, `letter-s`, 184, 107);
+        this.drawFrame(context, `letter-h`, 194, 107);
+        this.drawFrame(context, `letter-i`, 204, 107);
+        this.drawFrame(context, `letter-w`, 217, 107);
+        this.drawFrame(context, `letter-i`, 228, 107);
+        this.drawFrame(context, `letter-n`, 233, 107);
+      }
     }
   }
   
@@ -120,7 +134,8 @@ export class StatusBar{
     }
   }
 
-  changeGameResult(playerId){
-    this.result = playerId
+  changeGameResult(gameResult, playerName){
+    this.result = gameResult
+    this.winnerName = playerName
   }
 }
