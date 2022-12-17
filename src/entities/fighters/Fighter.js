@@ -439,6 +439,6 @@ export class Fighter {
     )
     
     context.setTransform(1, 0, 0, 1, 0, 0)
-    //this.drawDebug(context)
+    this.drawDebug(context)
   }
 }

@@ -35,6 +35,14 @@
     <script type="module" src="./src/index.js"></script>
   </head>
   <body>
+    <audio id="song">
+      <source src="/imagens/BGM.mp3">
+    </audio>
+    <script>
+      window.addEventListener('click',() =>{
+        document.getElementById("song").play();
+      });
+    </script>
     
     <canvas width="384" height="224"></canvas>
     <img src="" alt="background"/>

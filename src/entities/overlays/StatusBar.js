@@ -1,4 +1,5 @@
 import {GAME_DURATION, GAME_RESULT} from '../../constants/game.js'
+import { Fighter } from '../fighters/Fighter.js'
 
 export class StatusBar{
   constructor(fighters){
@@ -13,8 +14,22 @@ export class StatusBar{
     
     this.frames = new Map([
       ['health-bar', [16,18,145,11]],
+      ['death-bar', [16,4,145,11]],
+      ['death-bar-90', [16,4,130,11]],
+      ['death-bar-80', [16,4,115,11]],
+      ['death-bar-70', [16,4,100,11]],
+      ['death-bar-60', [16,4,85,11]],
+      ['death-bar-50', [16,4,70,11]],
+      ['death-bar-40', [16,4,55,11]],
+      ['death-bar-30', [16,4,40,11]],
+      ['death-bar-20', [16,4,25,11]],
+      ['death-bar-10', [16,4,10,11]],
+      ['death-bar-00', [16,4,0,11]],
+
 
       ['ko-white', [161,16,32,14]],
+      ['ko-red', [161,1,32,14]],
+
 
       ['time-0', [16,32,14,16]],
       ['time-1', [32,32,14,16]],
@@ -69,7 +84,6 @@ export class StatusBar{
       
     }
   }
-
   update(time){
     this.updateTime(time)
   }
@@ -79,6 +93,11 @@ export class StatusBar{
     this.drawFrame(context,'ko-white',176,18)
     this.drawFrame(context,'health-bar',353 ,20 ,-1)
   }
+  drawDeathBars(context){
+    this.drawFrame(context,'death-bar',31,20)
+    this.drawFrame(context,'death-bar',353 ,20 ,-1)
+  }
+
 
   drawTime(context){
     if(this.time > 0){
@@ -121,6 +140,8 @@ export class StatusBar{
   
   draw(context){
     this.drawHealthBars(context)
+    this.drawDeathBars(context)
+
     this.drawTime(context)
     if(this.time <= 0){
       this.drawFrame(context, `time-over`, 161, 33)

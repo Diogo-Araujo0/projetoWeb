@@ -78,6 +78,12 @@ export class Naruto extends Fighter {
       ["normalAttack-4", [[[790, 940, 49, 49],[25, 49]], PushBox.IDLE, AttackType.PUNCH]],
 
 
+      //damage
+
+      ["damage-1", [[[23, 817, 45, 55],[22, 55]], PushBox.IDLE]],
+      ["damage-2", [[[82, 818, 37, 54],[18, 54]], PushBox.IDLE]],
+
+
 
 
 
@@ -97,7 +103,9 @@ export class Naruto extends Fighter {
       [FighterState.CROUCH_UP]: [['crouch-3',30],['crouch-2',30],['crouch-1',30],['crouch-1',-2]],
       [FighterState.WIN]: [['win-1', 110],['win-2',120], ['win-3',130], ['win-4',170], ['win-5',130], ['win-6',110], ['win-7',110], ['win-8',110]],
       [FighterState.DEATH]: [['death-1', 180],['death-2',180], ['death-3',0]],
-      [FighterState.ATTACK]: [['normalAttack-1', 120],['normalAttack-2',120], ['normalAttack-3', 120], ['normalAttack-4', -2]],
+      [FighterState.ATTACK]: [['normalAttack-1', 150],['normalAttack-2',150], ['normalAttack-3', 150], ['normalAttack-4', -2]],
+      [FighterState.DAMAGE]: [['damage-1', 150],['damage-2',150]],
+
 
 
     }
