@@ -1,12 +1,13 @@
-import { Fighter } from "./Fighter.js";
-import { FighterState, PushBox } from "../../constants/fighter.js"
+import { Fighter } from "./Fighter.js"
+import { FighterState, PushBox, AttackType} from "../../constants/fighter.js"
 
 export class Kakashi extends Fighter {
   constructor(x, y, direction, playerId) {
-    super("Kakashi", x, y, direction, playerId);
+    super("Kakashi", x, y, direction, playerId)
 
-    this.image = document.querySelector('img[alt="kakashi"]');
-    this.hp = 10
+    this.image = document.querySelector('img[alt="kakashi"]')
+    this.hp = 100
+
     this.frames = new Map([
 
       //Idle
@@ -73,11 +74,11 @@ export class Kakashi extends Fighter {
     
       //normal attack
     
-      ["normalAttack-1", [[[641, 1357, 52, 62],[26, 62]], PushBox.IDLE]],
-      ["normalAttack-2", [[[703, 1357, 46, 62],[22, 62]], PushBox.IDLE]],
-      ["normalAttack-3", [[[760, 1357, 54, 62],[27, 62]], PushBox.IDLE]],
-      ["normalAttack-4", [[[823, 1357, 45, 62],[22, 62]], PushBox.IDLE]],
-    ]);
+      ["normalAttack-1", [[[641, 1357, 52, 62],[26, 62]], PushBox.IDLE, AttackType.KICK]],
+      ["normalAttack-2", [[[703, 1357, 46, 62],[22, 62]], PushBox.IDLE, AttackType.KICK]],
+      ["normalAttack-3", [[[760, 1357, 54, 62],[27, 62]], PushBox.IDLE, AttackType.KICK]],
+      ["normalAttack-4", [[[823, 1357, 45, 62],[22, 62]], PushBox.IDLE, AttackType.KICK]],
+    ])
 
       
     this.animations = {
@@ -93,7 +94,7 @@ export class Kakashi extends Fighter {
       [FighterState.WIN]: [ ['win-3',100], ['win-4',100], ['win-5',100], ['win-6',100], ['win-7',100]],
       [FighterState.DEATH]: [['death-1', 180],['death-2',180], ['death-3',0]],
       [FighterState.ATTACK]: [['normalAttack-1', 150], ['normalAttack-2',150], ['normalAttack-3', 150], ['normalAttack-4', -2]],
-    };
+    }
 
     this.initialVelocity = {
       x:{
@@ -103,9 +104,9 @@ export class Kakashi extends Fighter {
         [FighterState.JUMP_BACKWARD]: -200,
       }, 
       jump: -420,
-    };
+    }
 
-    this.gravity = 1000;
+    this.gravity = 1000
 
   }
 }

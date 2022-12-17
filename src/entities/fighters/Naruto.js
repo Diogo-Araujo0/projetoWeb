@@ -1,13 +1,12 @@
-import { Fighter } from "./Fighter.js";
-import { FighterState, PushBox } from "../../constants/fighter.js"
+import { Fighter } from "./Fighter.js"
+import { AttackType, FighterState, PushBox } from "../../constants/fighter.js"
 
 export class Naruto extends Fighter {
   constructor(x, y, direction, playerId) {
-    super("Naruto", x, y, direction, playerId);
+    super("Naruto", x, y, direction, playerId)
 
-    this.image = document.querySelector('img[alt="naruto"]');
-    this.hp = 10
-    
+    this.image = document.querySelector('img[alt="naruto"]')
+    this.hp = 100
 
     this.frames = new Map([
       //idle  
@@ -73,10 +72,10 @@ export class Naruto extends Fighter {
 
       //normal attack
 
-      ["normalAttack-1", [[[595, 933, 41, 56],[20, 56]], PushBox.IDLE]],
-      ["normalAttack-2", [[[650, 937, 56, 52],[28, 52]], PushBox.IDLE]],
-      ["normalAttack-3", [[[719, 935, 57, 54],[27, 54]], PushBox.IDLE]],
-      ["normalAttack-4", [[[790, 940, 49, 49],[25, 49]], PushBox.IDLE]],
+      ["normalAttack-1", [[[595, 933, 41, 56],[20, 56]], PushBox.IDLE, AttackType.PUNCH]],
+      ["normalAttack-2", [[[650, 937, 56, 52],[28, 52]], PushBox.IDLE, AttackType.PUNCH]],
+      ["normalAttack-3", [[[719, 935, 57, 54],[27, 54]], PushBox.IDLE, AttackType.PUNCH]],
+      ["normalAttack-4", [[[790, 940, 49, 49],[25, 49]], PushBox.IDLE, AttackType.PUNCH]],
 
 
 
@@ -84,7 +83,7 @@ export class Naruto extends Fighter {
 
 
 
-    ]);
+    ])
       
     this.animations = {
       [FighterState.IDLE]: [['idle-1', 85],['idle-2',85], ['idle-3',85], ['idle-4',85], ['idle-5',85], ['idle-6',85]],
@@ -101,7 +100,7 @@ export class Naruto extends Fighter {
       [FighterState.ATTACK]: [['normalAttack-1', 120],['normalAttack-2',120], ['normalAttack-3', 120], ['normalAttack-4', -2]],
 
 
-    };
+    }
 
     this.initialVelocity = {
       x:{
@@ -111,9 +110,9 @@ export class Naruto extends Fighter {
         [FighterState.JUMP_BACKWARD]: -200,
       }, 
       jump: -420,
-    };
+    }
 
-    this.gravity = 1000;
+    this.gravity = 1000
     
     
 

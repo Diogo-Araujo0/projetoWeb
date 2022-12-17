@@ -1,1 +1,1 @@
-export const BACKGROUND_FLOOR = 210;
+export const BACKGROUND_FLOOR = 210

@@ -4,7 +4,7 @@ export const Control={
   UP: 'up',
   DOWN: 'down',
   ATTACK: 'attack',
-};
+}
 
 export const controls = [
   {
@@ -25,4 +25,4 @@ export const controls = [
       [Control.ATTACK]: 'KeyP',
     }
   },
-];
+]

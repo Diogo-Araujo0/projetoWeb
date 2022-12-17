@@ -1,14 +1,15 @@
-import {GAME_DURATION, GAME_RESULT} from '../../constants/game.js';
+import {GAME_DURATION, GAME_RESULT} from '../../constants/game.js'
 
 export class StatusBar{
   constructor(fighters){
-    this.image = document.querySelector('img[alt="overlay"]');
+    this.image = document.querySelector('img[alt="overlay"]')
 
-    this.time = GAME_DURATION;
-    this.timeTimer = 0;
-    this.fighters = fighters;
-    this.result = -1;
-    this.winnerName = '';
+    this.time = GAME_DURATION
+    this.timeTimer = 0
+    this.fighters = fighters
+    this.result = -1
+    this.winnerName = ''
+    this.isTimeFreeze = false
     
     this.frames = new Map([
       ['health-bar', [16,18,145,11]],
@@ -44,24 +45,24 @@ export class StatusBar{
       ['letter-s', [53,125,10,10]],
       ['letter-h', [113,113,10,10]],
       
-    ]);
+    ])
   }
 
   drawFrame(context,frameKey, x, y, direction = 1 ){
-    const [sourceX, sourceY, sourceWidth, sourceHeight] = this.frames.get(frameKey);
+    const [sourceX, sourceY, sourceWidth, sourceHeight] = this.frames.get(frameKey)
 
-    context.scale(direction, 1);
+    context.scale(direction, 1)
     context.drawImage(
       this.image,
       sourceX, sourceY, sourceWidth, sourceHeight,
       x * direction, y, sourceWidth, sourceHeight,
-    );
+    )
     context.setTransform(1, 0, 0, 1, 0, 0)
   }
 
   updateTime(time){
     if(time.previous > this.timeTimer + 664){
-      if(this.time >  0) {
+      if(this.time >  0 && !this.isTimeFreeze) {
         this.time -= 1
       }
       this.timeTimer = time.previous
@@ -70,20 +71,20 @@ export class StatusBar{
   }
 
   update(time){
-    this.updateTime(time);
+    this.updateTime(time)
   }
 
   drawHealthBars(context){
-    this.drawFrame(context,'health-bar',31,20);
-    this.drawFrame(context,'ko-white',176,18);
-    this.drawFrame(context,'health-bar',353 ,20 ,-1);
+    this.drawFrame(context,'health-bar',31,20)
+    this.drawFrame(context,'ko-white',176,18)
+    this.drawFrame(context,'health-bar',353 ,20 ,-1)
   }
 
   drawTime(context){
     if(this.time > 0){
-      const timeString = String(this.time).padStart(2, '00');
-      this.drawFrame(context, `time-${timeString.charAt(0)}`, 178,33);
-      this.drawFrame(context, `time-${timeString.charAt(1)}`, 194,33);
+      const timeString = String(this.time).padStart(2, '00')
+      this.drawFrame(context, `time-${timeString.charAt(0)}`, 178,33)
+      this.drawFrame(context, `time-${timeString.charAt(1)}`, 194,33)
     }
   }
 
@@ -93,34 +94,34 @@ export class StatusBar{
     }
     else if(this.result === GAME_RESULT.WIN){
       if(this.winnerName == "Naruto"){
-        this.drawFrame(context, `letter-n`, 142, 107);
-        this.drawFrame(context, `letter-a`, 153, 107);
-        this.drawFrame(context, `letter-r`, 164, 107);
-        this.drawFrame(context, `letter-u`, 174, 107);
-        this.drawFrame(context, `letter-t`, 184, 107);
-        this.drawFrame(context, `letter-o`, 194, 107);
-        this.drawFrame(context, `letter-w`, 215, 107);
-        this.drawFrame(context, `letter-i`, 226, 107);
-        this.drawFrame(context, `letter-n`, 231, 107);
+        this.drawFrame(context, `letter-n`, 142, 107)
+        this.drawFrame(context, `letter-a`, 153, 107)
+        this.drawFrame(context, `letter-r`, 164, 107)
+        this.drawFrame(context, `letter-u`, 174, 107)
+        this.drawFrame(context, `letter-t`, 184, 107)
+        this.drawFrame(context, `letter-o`, 194, 107)
+        this.drawFrame(context, `letter-w`, 215, 107)
+        this.drawFrame(context, `letter-i`, 226, 107)
+        this.drawFrame(context, `letter-n`, 231, 107)
       }
       else if(this.winnerName == "Kakashi"){
-        this.drawFrame(context, `letter-k`, 142, 107);
-        this.drawFrame(context, `letter-a`, 152, 107);
-        this.drawFrame(context, `letter-k`, 163, 107);
-        this.drawFrame(context, `letter-a`, 173, 107);
-        this.drawFrame(context, `letter-s`, 184, 107);
-        this.drawFrame(context, `letter-h`, 194, 107);
-        this.drawFrame(context, `letter-i`, 204, 107);
-        this.drawFrame(context, `letter-w`, 217, 107);
-        this.drawFrame(context, `letter-i`, 228, 107);
-        this.drawFrame(context, `letter-n`, 233, 107);
+        this.drawFrame(context, `letter-k`, 142, 107)
+        this.drawFrame(context, `letter-a`, 152, 107)
+        this.drawFrame(context, `letter-k`, 163, 107)
+        this.drawFrame(context, `letter-a`, 173, 107)
+        this.drawFrame(context, `letter-s`, 184, 107)
+        this.drawFrame(context, `letter-h`, 194, 107)
+        this.drawFrame(context, `letter-i`, 204, 107)
+        this.drawFrame(context, `letter-w`, 217, 107)
+        this.drawFrame(context, `letter-i`, 228, 107)
+        this.drawFrame(context, `letter-n`, 233, 107)
       }
     }
   }
   
   draw(context){
-    this.drawHealthBars(context);
-    this.drawTime(context);
+    this.drawHealthBars(context)
+    this.drawTime(context)
     if(this.time <= 0){
       this.drawFrame(context, `time-over`, 161, 33)
     }
@@ -137,5 +138,9 @@ export class StatusBar{
   changeGameResult(gameResult, playerName){
     this.result = gameResult
     this.winnerName = playerName
+  }
+
+  freezeClock(){
+    this.isTimeFreeze = true
   }
 }

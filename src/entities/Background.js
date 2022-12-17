@@ -1,9 +1,9 @@
 export class Background {
   constructor(backgroundNumber) {
     this.id = backgroundNumber
-    this.animationFrame = 1;
-    this.animationTimer = 0;
-    this.image = document.querySelector('img[alt="background"]');
+    this.animationFrame = 1
+    this.animationTimer = 0
+    this.image = document.querySelector('img[alt="background"]')
 
     if (this.id === 1){
       this.animations = {
@@ -39,21 +39,21 @@ export class Background {
   }
   
   update(time) {
-    const animation = this.animations;
-    const frameDelay = animation.delay;
+    const animation = this.animations
+    const frameDelay = animation.delay
     if (time.previous > this.animationTimer + frameDelay) {
-      this.animationTimer = time.previous;
+      this.animationTimer = time.previous
       if(frameDelay > 0){
-       this.animationFrame++;
+       this.animationFrame++
       }
       if (this.animationFrame > animation.length){ 
-        this.animationFrame = 1;
+        this.animationFrame = 1
       }
     }
     this.image.src = `./imagens/background${this.id}/background(${this.animationFrame}).png`
   }
 
   draw(context) {
-    context.drawImage(this.image, 0, 0);
+    context.drawImage(this.image, 0, 0)
   }
 }
