@@ -27,6 +27,7 @@ export class ImmortalFight{
       new FpsCounter(),
       new StatusBar(this.fighters),
       new Icons(this.fighters),
+      new Sound(),
     ]
   
     this.frameTime = {
@@ -90,7 +91,7 @@ export class ImmortalFight{
   start(){
     registerKeyboardEvents()
     window.requestAnimationFrame(this.frame.bind(this))
-    getLocation()
+    //getLocation()
   }
 }
 

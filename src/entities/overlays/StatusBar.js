@@ -1,7 +1,11 @@
 import {GAME_DURATION, GAME_RESULT} from '../../constants/game.js'
 import { Fighter } from '../fighters/Fighter.js'
 
-export class StatusBar{
+const dattebayo = new Audio("/sons/dattebayo.mp3");
+dattebayo.volume = 0.3;
+
+export class StatusBar{4
+  
   constructor(fighters){
     this.image = document.querySelector('img[alt="overlay"]')
 
@@ -113,6 +117,7 @@ export class StatusBar{
     }
     else if(this.result === GAME_RESULT.WIN){
       if(this.winnerName == "Naruto"){
+        dattebayo.play();
         this.drawFrame(context, `letter-n`, 142, 107)
         this.drawFrame(context, `letter-a`, 153, 107)
         this.drawFrame(context, `letter-r`, 164, 107)
