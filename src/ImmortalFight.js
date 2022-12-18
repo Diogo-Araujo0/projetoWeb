@@ -8,12 +8,26 @@ import { registerKeyboardEvents, disableKeys } from "./InputHandler.js"
 import { StatusBar } from './entities/overlays/StatusBar.js'
 import { Icons } from './entities/overlays/Icons.js'
 import { GAME_RESULT } from './constants/game.js'
-import { Sounds } from "./entities/audio.js"
+import { Sounds } from "./entities/Sounds.js"
 
-const audio = new Audio("./sons/background.ogg");
+const paises = [
+  "Spain",
+  "USA",
+  "Japan",
+  "France",
+  "Germany",
+  "Russia",
+  "Brazil",
+  "Iran",
+  "China",
+  "Peru",
+  "India",
+  "Netherlands"
+]
 
 export class ImmortalFight{
   constructor(){
+    this.audio = new Audio("./audio/background.ogg");
     this.context = this.getContext()
     this.isOver = false
     this.fighters = [
@@ -23,15 +37,16 @@ export class ImmortalFight{
 
     this.fighters[0].opponent = this.fighters[1]
     this.fighters[1].opponent = this.fighters[0]
+    
     this.entities = [
-      new Background(6),
+      new Background(Math.floor(Math.random() * 6) + 1),
       ...this.fighters,
       new FpsCounter(),
       new StatusBar(),
       new Icons(this.fighters),
       new Sounds(),
     ]
-  
+    
     this.frameTime = {
       previous: 0,
       secondsPassed: 0,
@@ -53,10 +68,10 @@ export class ImmortalFight{
     this.entities[4].updateHealthBar(this.entities[5].fighters[0].hp, this.entities[5].fighters[1].hp)
     this.entities[6].updatePlayer(this.entities[5].fighters[0], this.entities[5].fighters[1])
     this.gameResultCheck()
-    audio.addEventListener('ended', function() {
-      this.currentTime = 0;
-      this.play();
-  }, false);
+    this.audio.addEventListener('ended', function() {
+        this.currentTime = 0;
+        this.play();
+    }, false);
   }
 
   gameResultCheck(){
@@ -99,19 +114,20 @@ export class ImmortalFight{
     registerKeyboardEvents()
     window.requestAnimationFrame(this.frame.bind(this))
     
-    audio.volume = 0.1;
-    audio.play()
-    //getLocation()
+    this.audio.volume = 0.1;
+    //this.audio.play()
   }
 }
 
-/*const getLocation = async function() {
-  await fetch('https://api.wheretheiss.at/v1/satellites/25544').then((response) =>{
+
+const getWeather = async function() {
+  const num = Math.floor(Math.random() * paises.length);
+  await fetch(`https://covid-19.dataflowkit.com/v1/${paises[num]}`).then((response) =>{
     var data = response.json()
     data.then((dados) =>{
-      console.log(dados)
+      return dados
     })
   }).catch((error) => {
     console.log(error)
   })
-}*/
+}
