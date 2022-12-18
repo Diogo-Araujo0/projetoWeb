@@ -5,14 +5,10 @@ export class Icons{
 
     this.frames = new Map([
 
-      ['naruto', [155,63,36,50]],
-      ['naruto2', [274,339,37,32]],
 
+      ['naruto', [274,339,37,32]],
 
-
-      ['kakashi', [166,619,37,52]],
-      ['kakashi2', [139,297,41,33]],
-
+      ['kakashi', [139,297,41,33]],
 
     ]);
   }
@@ -33,8 +29,8 @@ export class Icons{
   }
 
   drawIcons(context){
-    this.drawFrame(context,'naruto2',70,31,-1);
-    this.drawFrame(context,'kakashi2',311 ,31);
+    this.drawFrame(context,'naruto',70,31,-1);
+    this.drawFrame(context,'kakashi',311 ,31);
   }
 
   
