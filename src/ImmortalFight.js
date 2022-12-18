@@ -65,6 +65,7 @@ export class ImmortalFight{
       entity.update(this.frameTime, this.context)
     }
     this.entities[4].updatePlayer(this.entities[5].fighters[0], this.entities[5].fighters[1])
+    this.entities[5].updatePlayer(this.entities[5].fighters[0], this.entities[5].fighters[1])
     this.entities[6].updatePlayer(this.entities[5].fighters[0], this.entities[5].fighters[1])
     this.gameResultCheck()
     this.audio.addEventListener('ended', function() {
@@ -82,6 +83,9 @@ export class ImmortalFight{
       numb3 = this.dadosAPI['Total Cases_text'].charAt(this.dadosAPI['Total Recovered_text'].length-3)
       var x = Math.min(350, (parseInt(numb1) * parseInt(numb2) * parseInt(numb3))*2)
       var y = Math.max(90, parseInt(numb1) * parseInt(numb2) * parseInt(numb3))
+      if(x <= 10){
+        x = 15
+      }
       this.entities[4].updateAPIData(Math.round(Math.random() + 1), total, x, y)
     }
     

@@ -1,4 +1,4 @@
-import {GAME_DURATION, GAME_RESULT} from '../../constants/game.js'
+import {GAME_DURATION, GAME_RESULT, DEBUG} from '../../constants/game.js'
 import { rectsOverlap } from "../../utils/collisions.js"
 
 export class StatusBar{
@@ -102,10 +102,10 @@ export class StatusBar{
 
     if(this.player1 && this.player2 && this.hasSpawnedItem){
       if(this.hasCollidedWithItem(this.player1)){
-        if(this.item.id == 1 && this.player1.hp < 100){
+        if(this.item.id == 1 && (this.player1.hp + 20) <= 100){
           this.hasSpawnedItem = false
           this.canSpawn = false
-          this.player1.hp += 10
+          this.player1.hp += 20
         }
         if(this.item.id == 2 && (this.player1.specialAttack + 20) <= 100){
           this.hasSpawnedItem = false
@@ -113,10 +113,10 @@ export class StatusBar{
           this.player1.specialAttack += 20
         }
       }else if(this.hasCollidedWithItem(this.player2)){
-        if(this.item.id == 1 && this.player2.hp < 100){
+        if(this.item.id == 1 && (this.player2.hp + 20) <= 100){
             this.hasSpawnedItem = false
             this.canSpawn = false
-            this.player2.hp += 10
+            this.player2.hp += 20
         }
         if(this.item.id == 2 && (this.player2.specialAttack + 20) <= 100){
           this.hasSpawnedItem = false
@@ -202,16 +202,17 @@ export class StatusBar{
       if(this.hasSpawnedItem && this.canSpawn){
         this.drawFrame(context, `item-${this.item.id}`, this.item.x, this.item.y)
       }
-
-      context.beginPath()
-      context.strokeStyle = '#55FF55'
-      context.fillStyle = '#55FF5555'
-      context.fillRect(
-        Math.floor(this.item.x + this.item.pushBoxX),
-        Math.floor(this.item.y + this.item.pushBoxY),
-        this.item.pushBoxWidth,
-        this.item.pushBoxHeight,
-      )
+      if(DEBUG){
+        context.beginPath()
+        context.strokeStyle = '#55FF55'
+        context.fillStyle = '#55FF5555'
+        context.fillRect(
+          Math.floor(this.item.x + this.item.pushBoxX),
+          Math.floor(this.item.y + this.item.pushBoxY),
+          this.item.pushBoxWidth,
+          this.item.pushBoxHeight,
+        )
+      }
     }
   }
 

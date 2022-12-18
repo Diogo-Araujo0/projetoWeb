@@ -2,6 +2,7 @@ import { BACKGROUND_FLOOR } from "../../constants/background.js"
 import { AttackType, AttackBoxLeft, AttackBoxRight, FighterDirection, FighterState } from "../../constants/fighter.js"
 import * as control from "../../InputHandler.js"
 import { rectsOverlap } from "../../utils/collisions.js"
+import { DEBUG } from "../../constants/game.js"
 
 export class Fighter {
   constructor(name, x, y, direction, playerId) {
@@ -125,7 +126,7 @@ export class Fighter {
       },
       [FighterState.ATTACK_SPECIAL]:{
         init: this.handleAttackInit.bind(this),
-        update: this.handleAttackState.bind(this),
+        update: this.handleSpecialAttackState.bind(this),
         validForm: [
           FighterState.IDLE, FighterState.WALK_BACKWARD, FighterState.WALK_FORWARD,
         ],
@@ -232,7 +233,7 @@ export class Fighter {
       this.changeState(FighterState.WALK_FORWARD)
     }else if(control.isAttacking(this.playerId)) {
       this.changeState(FighterState.ATTACK)
-    }else if(control.isAttackingSpecial(this.playerId)) {
+    }else if(control.isAttackingSpecial(this.playerId) && this.specialAttack == 100) {
       this.changeState(FighterState.ATTACK_SPECIAL)
     }
 
@@ -253,7 +254,7 @@ export class Fighter {
       this.changeState(FighterState.ATTACK)
     }else if(this.hasTakenDamage){
       this.changeState(FighterState.DAMAGE)
-    }else if(control.isAttackingSpecial(this.playerId)) {
+    }else if(control.isAttackingSpecial(this.playerId) && this.specialAttack == 100) {
       this.changeState(FighterState.ATTACK_SPECIAL)
     }
 
@@ -271,7 +272,7 @@ export class Fighter {
       this.changeState(FighterState.ATTACK)
     }else if(this.hasTakenDamage){
       this.changeState(FighterState.DAMAGE)
-    }else if(control.isAttackingSpecial(this.playerId)) {
+    }else if(control.isAttackingSpecial(this.playerId) && this.specialAttack == 100) {
       this.changeState(FighterState.ATTACK_SPECIAL)
     }
 
@@ -324,6 +325,15 @@ export class Fighter {
     if(this.animations[this.currentState][this.animationFrame][1] == -2){
       this.isAttacking = false
       this.hasAttack = false
+      this.changeState(FighterState.IDLE)
+    }
+  }
+
+  handleSpecialAttackState(){
+    if(this.animations[this.currentState][this.animationFrame][1] == -2){
+      this.isAttacking = false
+      this.hasAttack = false
+      this.specialAttack = 0
       this.changeState(FighterState.IDLE)
     }
   }
@@ -385,9 +395,6 @@ export class Fighter {
 
   updateAnimation(time){
     const animation = this.animations[this.currentState]
-    if(this.name == "Kakashi"){
-      console.log(this.currentState)
-    }
     const [frameKey, frameDelay] = animation[this.animationFrame]
     if (time.previous > this.animationTimer + frameDelay) {
       this.animationTimer = time.previous
@@ -491,6 +498,8 @@ export class Fighter {
     )
     
     context.setTransform(1, 0, 0, 1, 0, 0)
-    this.drawDebug(context)
+    if(DEBUG){
+      this.drawDebug(context)
+    }
   }
 }
