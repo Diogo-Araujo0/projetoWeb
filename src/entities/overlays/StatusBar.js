@@ -84,6 +84,12 @@ export class StatusBar{
       if(this.time >  0 && !this.isTimeFreeze) {
         this.time -= 1
       }
+      if(this.player1.specialAttack < 100){
+        this.player1.specialAttack += 5
+      }
+      if(this.player2.specialAttack < 100){
+        this.player2.specialAttack += 5
+      }
       this.timeTimer = time.previous
     }
   }
@@ -93,6 +99,7 @@ export class StatusBar{
     if(this.time <= GAME_DURATION-this.delay && this.canSpawn){
       this.hasSpawnedItem = true
     }
+
     if(this.player1 && this.player2 && this.hasSpawnedItem){
       if(this.hasCollidedWithItem(this.player1)){
         if(this.item.id == 1 && this.player1.hp < 100){
@@ -100,12 +107,21 @@ export class StatusBar{
           this.canSpawn = false
           this.player1.hp += 10
         }
-
+        if(this.item.id == 2 && (this.player1.specialAttack + 20) <= 100){
+          this.hasSpawnedItem = false
+          this.canSpawn = false
+          this.player1.specialAttack += 20
+        }
       }else if(this.hasCollidedWithItem(this.player2)){
         if(this.item.id == 1 && this.player2.hp < 100){
             this.hasSpawnedItem = false
             this.canSpawn = false
             this.player2.hp += 10
+        }
+        if(this.item.id == 2 && (this.player2.specialAttack + 20) <= 100){
+          this.hasSpawnedItem = false
+          this.canSpawn = false
+          this.player2.specialAttack += 20
         }
       }
     }
@@ -124,7 +140,6 @@ export class StatusBar{
   drawDeathBars(context){
     this.drawFrame(context,`death-bar-${this.player1.hp}`,31,20)
     this.drawFrame(context,`death-bar-${this.player2.hp}`,353 ,20 ,-1)
-    
   }
 
   drawTime(context){

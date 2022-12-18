@@ -19,6 +19,7 @@ export const FighterState = {
   DEATH: 'death',
   ATTACK: 'attack',
   DAMAGE: 'damage',
+  ATTACK_SPECIAL: 'attack_special'
 }
 
 export const PushBox = {

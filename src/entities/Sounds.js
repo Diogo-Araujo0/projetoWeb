@@ -13,6 +13,8 @@ export class Sounds{
     this.damageNaruto.volume = 0.5
     this.winNaruto = new Audio("../../audio/naruto-win.ogg")
     this.winNaruto.volume = 0.5
+    this.attackSpecialNaruto = new Audio("../../audio/rasengan.ogg")
+    this.attackSpecialNaruto.volume = 0.5
 
     this.attackKakashi = new Audio("../../audio/kakashi-attack.ogg")
     this.attackKakashi.volume = 0.3
@@ -20,6 +22,8 @@ export class Sounds{
     this.damageKakashi.volume = 0.5
     this.winKakashi = new Audio("../../audio/kakashi-win.ogg")
     this.winKakashi.volume = 0.5
+    this.attackSpecialKakashi = new Audio("../../audio/raikiri.ogg")
+    this.attackSpecialKakashi.volume = 0.5
   }
   
   playSound(audio){
@@ -65,6 +69,18 @@ export class Sounds{
           this.playSound(this.attackNaruto)
         }else if(this.player2.name == "Kakashi"){
           this.playSound(this.attackKakashi)
+        }
+      }else if(this.player1.currentState === FighterState.ATTACK_SPECIAL){
+        if(this.player1.name == "Naruto"){
+          this.playSound(this.attackSpecialNaruto)
+        }else if(this.player1.name == "Kakashi"){
+          this.playSound(this.attackSpecialKakashi)
+        }
+      }else if(this.player2.currentState === FighterState.ATTACK_SPECIAL){
+        if(this.player2.name == "Naruto"){
+          this.playSound(this.attackSpecialNaruto)
+        }else if(this.player2.name == "Kakashi"){
+          this.playSound(this.attackSpecialKakashi)
         }
       }else if(this.player1.currentState === FighterState.WIN){
         if(this.player1.name == "Naruto"){

@@ -4,6 +4,7 @@ export const Control={
   UP: 'up',
   DOWN: 'down',
   ATTACK: 'attack',
+  ATTACK_SPECIAL: 'attack_special',
 }
 
 export const controls = [
@@ -14,6 +15,7 @@ export const controls = [
       [Control.UP]: 'KeyW',
       [Control.DOWN]: 'KeyS',
       [Control.ATTACK]: 'KeyC',
+      [Control.ATTACK_SPECIAL]: 'KeyX',
     }
   },
   {
@@ -23,6 +25,7 @@ export const controls = [
       [Control.UP]: 'ArrowUp',
       [Control.DOWN]: 'ArrowDown',
       [Control.ATTACK]: 'KeyP',
+      [Control.ATTACK_SPECIAL]: 'KeyL',
     }
   },
 ]

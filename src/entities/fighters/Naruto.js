@@ -7,6 +7,7 @@ export class Naruto extends Fighter {
 
     this.image = document.querySelector('img[alt="naruto"]')
     this.hp = FighterHP
+    this.specialAttack = 0
 
     this.frames = new Map([
       //idle  
@@ -82,8 +83,8 @@ export class Naruto extends Fighter {
       ["specialAttack-1", [[[805, 2635, 36, 53],[17, 53]], PushBox.IDLE, AttackType.PUNCH]],
       ["specialAttack-2", [[[336, 2728, 44, 51],[22, 51]], PushBox.IDLE, AttackType.PUNCH]],
       ["specialAttack-3", [[[393, 2728, 64, 51],[32, 51]], PushBox.IDLE, AttackType.PUNCH]],
-      ["specialAttack-4", [[[25, 2825, 76, 51],[33, 25]], PushBox.IDLE, AttackType.PUNCH]],
-      ["specialAttack-5", [[[114, 2811, 105, 65],[52, 32]], PushBox.IDLE, AttackType.PUNCH]],
+      ["specialAttack-4", [[[25, 2825, 76, 51],[38, 51]], PushBox.IDLE, AttackType.PUNCH]],
+      ["specialAttack-5", [[[114, 2811, 105, 65],[52, 65]], PushBox.IDLE, AttackType.PUNCH]],
       
 
 
@@ -113,11 +114,8 @@ export class Naruto extends Fighter {
       [FighterState.WIN]: [['win-1', 110],['win-2',120], ['win-3',130], ['win-4',170], ['win-5',130], ['win-6',110], ['win-7',110], ['win-8',110]],
       [FighterState.DEATH]: [['death-1', 180],['death-2',180], ['death-3',0]],
       [FighterState.ATTACK]: [['normalAttack-1', 150],['normalAttack-2',150], ['normalAttack-3', 150], ['normalAttack-4', -2]],
-      [FighterState.ATTACK_SPECIAL]: [['specialAttack-1', 150],['specialAttack-2',150], ['specialAttack-3', 150], ['specialAttack-4', 150],['specialAttack-5', -2] ],
+      [FighterState.ATTACK_SPECIAL]: [['specialAttack-1', 150],['specialAttack-2',150], ['specialAttack-3', 250], ['specialAttack-4', 150],['specialAttack-5', 250],['specialAttack-5', -2]],
       [FighterState.DAMAGE]: [['damage-1', 150],['damage-2',150],['damage-2',-2]],
-
-
-
     }
 
     this.initialVelocity = {

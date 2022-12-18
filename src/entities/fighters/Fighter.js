@@ -36,7 +36,7 @@ export class Fighter {
           undefined,
           FighterState.IDLE, FighterState.WALK_FORWARD, FighterState.WALK_BACKWARD,
           FighterState.JUMP_UP, FighterState.JUMP_FORWARD,FighterState.JUMP_BACKWARD,
-          FighterState.CROUCH_UP, FighterState.ATTACK, FighterState.DAMAGE,
+          FighterState.CROUCH_UP, FighterState.ATTACK, FighterState.DAMAGE,FighterState.ATTACK_SPECIAL,
         ],
       },
       [FighterState.WALK_FORWARD]:{
@@ -121,6 +121,13 @@ export class Fighter {
         update: this.handleDamageState.bind(this),
         validForm: [
           FighterState.IDLE, FighterState.WALK_BACKWARD, FighterState.WALK_FORWARD, FighterState.CROUCH, 
+        ],
+      },
+      [FighterState.ATTACK_SPECIAL]:{
+        init: this.handleAttackInit.bind(this),
+        update: this.handleAttackState.bind(this),
+        validForm: [
+          FighterState.IDLE, FighterState.WALK_BACKWARD, FighterState.WALK_FORWARD,
         ],
       },
 
@@ -225,6 +232,8 @@ export class Fighter {
       this.changeState(FighterState.WALK_FORWARD)
     }else if(control.isAttacking(this.playerId)) {
       this.changeState(FighterState.ATTACK)
+    }else if(control.isAttackingSpecial(this.playerId)) {
+      this.changeState(FighterState.ATTACK_SPECIAL)
     }
 
     const newDirection = this.getDirection()
@@ -244,6 +253,8 @@ export class Fighter {
       this.changeState(FighterState.ATTACK)
     }else if(this.hasTakenDamage){
       this.changeState(FighterState.DAMAGE)
+    }else if(control.isAttackingSpecial(this.playerId)) {
+      this.changeState(FighterState.ATTACK_SPECIAL)
     }
 
     this.direction = this.getDirection()
@@ -260,6 +271,8 @@ export class Fighter {
       this.changeState(FighterState.ATTACK)
     }else if(this.hasTakenDamage){
       this.changeState(FighterState.DAMAGE)
+    }else if(control.isAttackingSpecial(this.playerId)) {
+      this.changeState(FighterState.ATTACK_SPECIAL)
     }
 
     this.direction = this.getDirection()
@@ -372,6 +385,9 @@ export class Fighter {
 
   updateAnimation(time){
     const animation = this.animations[this.currentState]
+    if(this.name == "Kakashi"){
+      console.log(this.currentState)
+    }
     const [frameKey, frameDelay] = animation[this.animationFrame]
     if (time.previous > this.animationTimer + frameDelay) {
       this.animationTimer = time.previous
@@ -401,7 +417,14 @@ export class Fighter {
 
     if(this.isAttacking && this.hasAttackingTheOpponent() && !this.hasAttack){
         this.hasAttack = true
-        this.opponent.hp -= 10
+        if(this.currentState === FighterState.ATTACK){
+          this.opponent.hp -= 10
+        }else if(this.currentState === FighterState.ATTACK_SPECIAL){
+          this.opponent.hp -= 30
+        }
+        if(this.opponent.hp < 0){
+          this.opponent.hp = 0
+        }
         this.opponent.changeState(FighterState.DAMAGE)
     }
     

@@ -7,6 +7,7 @@ export class Kakashi extends Fighter {
 
     this.image = document.querySelector('img[alt="kakashi"]')
     this.hp = FighterHP
+    this.specialAttack = 0
 
     this.frames = new Map([
 
@@ -80,11 +81,11 @@ export class Kakashi extends Fighter {
       ["normalAttack-4", [[[823, 1357, 45, 62],[22, 62]], PushBox.IDLE, AttackType.KICK]],
 
       //special attack
-      ["specialAttack-1", [[[389, 4062, 89, 49],[44, 28]], PushBox.IDLE, AttackType.PUNCH]],
-      ["specialAttack-2", [[[21, 4135, 67, 58],[33, 58]], PushBox.IDLE, AttackType.PUNCH]],
-      ["specialAttack-3", [[[103, 4143, 60, 50],[30, 50]], PushBox.IDLE, AttackType.PUNCH]],
-      ["specialAttack-4", [[[598, 4132, 92, 58],[46, 58]], PushBox.IDLE, AttackType.PUNCH]],
-      ["specialAttack-5", [[[809, 4133, 77, 57],[37, 57]], PushBox.IDLE, AttackType.PUNCH]],
+      ["specialAttack-1", [[[389, 4062, 89, 49],[44, 49]], PushBox.IDLE, AttackType.KICK]],
+      ["specialAttack-2", [[[21, 4135, 67, 58],[33, 58]], PushBox.IDLE, AttackType.KICK]],
+      ["specialAttack-3", [[[103, 4143, 60, 50],[30, 50]], PushBox.IDLE, AttackType.KICK]],
+      ["specialAttack-4", [[[598, 4132, 92, 58],[46, 58]], PushBox.IDLE, AttackType.KICK]],
+      ["specialAttack-5", [[[809, 4133, 77, 57],[37, 57]], PushBox.IDLE, AttackType.KICK]],
 
 
       //damage
@@ -108,6 +109,7 @@ export class Kakashi extends Fighter {
       [FighterState.WIN]: [ ['win-3',100], ['win-4',100], ['win-5',100], ['win-6',100], ['win-7',100]],
       [FighterState.DEATH]: [['death-1', 180],['death-2',180], ['death-3',0]],
       [FighterState.ATTACK]: [['normalAttack-1', 150], ['normalAttack-2',150], ['normalAttack-3', 150], ['normalAttack-4', -2]],
+      [FighterState.ATTACK_SPECIAL]: [['specialAttack-1', 250],['specialAttack-2',150], ['specialAttack-3', 150], ['specialAttack-4', 150], ['specialAttack-5', 250],['specialAttack-5', -2]],
       [FighterState.DAMAGE]: [['damage-1', 150],['damage-2',150], ['damage-2',-2]],
     }
 

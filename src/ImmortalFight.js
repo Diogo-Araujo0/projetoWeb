@@ -82,7 +82,7 @@ export class ImmortalFight{
       numb3 = this.dadosAPI['Total Cases_text'].charAt(this.dadosAPI['Total Recovered_text'].length-3)
       var x = Math.min(350, (parseInt(numb1) * parseInt(numb2) * parseInt(numb3))*2)
       var y = Math.max(90, parseInt(numb1) * parseInt(numb2) * parseInt(numb3))
-      this.entities[4].updateAPIData(Math.round(Math.random() + 1), 1, x, y)
+      this.entities[4].updateAPIData(Math.round(Math.random() + 1), total, x, y)
     }
     
   }
