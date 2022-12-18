@@ -17,8 +17,7 @@ export class Naruto extends Fighter {
       ["idle-4", [[[196, 349, 43, 55],[21, 55]], PushBox.IDLE]],
       ["idle-5", [[[251, 348, 43, 56],[21, 56]], PushBox.IDLE]],
       ["idle-6", [[[309, 347, 43, 57],[21, 57]], PushBox.IDLE]],
-
-
+   
       // Forward
 
       ["forwards-1", [[[386, 469, 44, 48],[21, 48]], PushBox.IDLE]],
@@ -27,6 +26,7 @@ export class Naruto extends Fighter {
       ["forwards-4", [[[581, 469, 41, 46],[20, 46]], PushBox.IDLE]],
       ["forwards-5", [[[633, 466, 55, 45],[27, 45]], PushBox.IDLE]],
       ["forwards-6", [[[703, 468, 52, 49],[26, 48]], PushBox.IDLE]],
+
 
       // Backward
 
