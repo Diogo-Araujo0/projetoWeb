@@ -79,6 +79,14 @@ export class Kakashi extends Fighter {
       ["normalAttack-3", [[[760, 1357, 54, 62],[27, 62]], PushBox.IDLE, AttackType.KICK]],
       ["normalAttack-4", [[[823, 1357, 45, 62],[22, 62]], PushBox.IDLE, AttackType.KICK]],
 
+      //special attack
+      ["specialAttack-1", [[[389, 4062, 89, 49],[44, 28]], PushBox.IDLE, AttackType.PUNCH]],
+      ["specialAttack-2", [[[21, 4135, 67, 58],[33, 58]], PushBox.IDLE, AttackType.PUNCH]],
+      ["specialAttack-3", [[[103, 4143, 60, 50],[30, 50]], PushBox.IDLE, AttackType.PUNCH]],
+      ["specialAttack-4", [[[598, 4132, 92, 58],[46, 58]], PushBox.IDLE, AttackType.PUNCH]],
+      ["specialAttack-5", [[[809, 4133, 77, 57],[37, 57]], PushBox.IDLE, AttackType.PUNCH]],
+
+
       //damage
 
       ["damage-1", [[[23, 1129, 47, 48],[23, 48]], PushBox.IDLE]],
