@@ -8,16 +8,11 @@ export class Icons{
 
       ['naruto', [274,339,37,32]],
 
-<<<<<<< Updated upstream
-      ['kakashi', [139,297,41,33]],
-
-=======
 
       ['kakashi', [166,619,37,52]],
       ['kakashi2', [139,297,41,33]],
 
       ['power-bar', [2,14,78,13]],
->>>>>>> Stashed changes
     ]);
   }
 
@@ -37,14 +32,9 @@ export class Icons{
   }
 
   drawIcons(context){
-<<<<<<< Updated upstream
     this.drawFrame(context,'naruto',70,31,-1);
-    this.drawFrame(context,'kakashi',311 ,31);
-=======
-    this.drawFrame(context,'naruto2',70,31,-1);
     this.drawFrame(context,'kakashi2',311 ,31);
     this.drawFrame(context,'power-bar',70 ,31);
->>>>>>> Stashed changes
   }
 
   
