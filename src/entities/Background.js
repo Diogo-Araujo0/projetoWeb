@@ -1,10 +1,3 @@
-const audio = new Audio("./sons/BGM.mp3");
-audio.volume = 0.1;
-document.body.addEventListener("keydown",function(){
-  audio.play()
-}) 
-
-
 export class Background {
   constructor(backgroundNumber) {
     this.id = backgroundNumber

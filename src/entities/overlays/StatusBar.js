@@ -6,12 +6,11 @@ dattebayo.volume = 0.3;
 
 export class StatusBar{4
   
-  constructor(fighters){
+  constructor(){
     this.image = document.querySelector('img[alt="overlay"]')
 
     this.time = GAME_DURATION
     this.timeTimer = 0
-    this.fighters = fighters
     this.result = -1
     this.winnerName = ''
     this.isTimeFreeze = false
@@ -105,7 +104,6 @@ export class StatusBar{4
   }
 
   drawDeathBars(context){
-    console.log(this.player1HP, this.player2HP)
     this.drawFrame(context,`death-bar-${this.player1HP}`,31,20)
     this.drawFrame(context,`death-bar-${this.player2HP}`,353 ,20 ,-1)
     

@@ -3,12 +3,14 @@ import { Kakashi } from "./entities/fighters/Kakashi.js"
 import { Background } from "./entities/Background.js"
 import { FpsCounter } from "./entities/FpsCounter.js"
 import { BACKGROUND_FLOOR } from "./constants/background.js"
-import { Sound } from "./constants/audio.js"
 import { FighterDirection } from "./constants/fighter.js"
 import { registerKeyboardEvents, disableKeys } from "./InputHandler.js"
 import { StatusBar } from './entities/overlays/StatusBar.js'
 import { Icons } from './entities/overlays/Icons.js'
 import { GAME_RESULT } from './constants/game.js'
+import { Sounds } from "./entities/audio.js"
+
+const audio = new Audio("./sons/background.ogg");
 
 export class ImmortalFight{
   constructor(){
@@ -18,15 +20,16 @@ export class ImmortalFight{
       new Naruto(104, BACKGROUND_FLOOR, FighterDirection.RIGHT,0),
       new Kakashi(280, BACKGROUND_FLOOR, FighterDirection.LEFT,1),
     ]
-  
+
     this.fighters[0].opponent = this.fighters[1]
     this.fighters[1].opponent = this.fighters[0]
     this.entities = [
       new Background(6),
       ...this.fighters,
       new FpsCounter(),
-      new StatusBar(this.fighters),
+      new StatusBar(),
       new Icons(this.fighters),
+      new Sounds(),
     ]
   
     this.frameTime = {
@@ -48,7 +51,12 @@ export class ImmortalFight{
       entity.update(this.frameTime, this.context)
     }
     this.entities[4].updateHealthBar(this.entities[5].fighters[0].hp, this.entities[5].fighters[1].hp)
+    this.entities[6].updatePlayer(this.entities[5].fighters[0], this.entities[5].fighters[1])
     this.gameResultCheck()
+    audio.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.play();
+  }, false);
   }
 
   gameResultCheck(){
@@ -90,6 +98,9 @@ export class ImmortalFight{
   start(){
     registerKeyboardEvents()
     window.requestAnimationFrame(this.frame.bind(this))
+    
+    audio.volume = 0.1;
+    audio.play()
     //getLocation()
   }
 }

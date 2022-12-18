@@ -3,8 +3,6 @@ import { AttackType, AttackBoxLeft, AttackBoxRight, FighterDirection, FighterSta
 import * as control from "../../InputHandler.js"
 import { rectsOverlap } from "../../utils/collisions.js"
 
-
-
 export class Fighter {
   constructor(name, x, y, direction, playerId) {
     this.name = name   
@@ -20,6 +18,8 @@ export class Fighter {
     this.animationFrame = 0
     this.animationTimer = 0
     this.animations = {}
+
+   
 
     this.image = new Image()
     this.pushBox = { x:0 , y:0, width: 0, height: 0 }
