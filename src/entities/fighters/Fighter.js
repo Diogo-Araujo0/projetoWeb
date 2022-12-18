@@ -3,6 +3,8 @@ import { AttackType, AttackBoxLeft, AttackBoxRight, FighterDirection, FighterSta
 import * as control from "../../InputHandler.js"
 import { rectsOverlap } from "../../utils/collisions.js"
 
+
+
 export class Fighter {
   constructor(name, x, y, direction, playerId) {
     this.name = name   
@@ -265,6 +267,7 @@ export class Fighter {
       this.direction = newDirection
     }
   }
+  
 
   handleCrouchDownState(){
     if(this.animations[this.currentState][this.animationFrame][1] == -2){
@@ -439,6 +442,6 @@ export class Fighter {
     )
     
     context.setTransform(1, 0, 0, 1, 0, 0)
-    this.drawDebug(context)
+    //this.drawDebug(context)
   }
 }

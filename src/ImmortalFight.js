@@ -3,6 +3,7 @@ import { Kakashi } from "./entities/fighters/Kakashi.js"
 import { Background } from "./entities/Background.js"
 import { FpsCounter } from "./entities/FpsCounter.js"
 import { BACKGROUND_FLOOR } from "./constants/background.js"
+import { Sound } from "./constants/audio.js"
 import { FighterDirection } from "./constants/fighter.js"
 import { registerKeyboardEvents, disableKeys } from "./InputHandler.js"
 import { StatusBar } from './entities/overlays/StatusBar.js'
@@ -93,7 +94,7 @@ export class ImmortalFight{
   }
 }
 
-const getLocation = async function() {
+/*const getLocation = async function() {
   await fetch('https://api.wheretheiss.at/v1/satellites/25544').then((response) =>{
     var data = response.json()
     data.then((dados) =>{
@@ -102,4 +103,4 @@ const getLocation = async function() {
   }).catch((error) => {
     console.log(error)
   })
-}
+}*/

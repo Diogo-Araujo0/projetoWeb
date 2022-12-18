@@ -1,3 +1,9 @@
+const audio = new Audio("/imagens/BGM.mp3");
+audio.volume = 0.1;
+
+/*document.body.addEventListener("mousemove",function(){
+  audio.play()
+}) */ 
 export class Background {
   constructor(backgroundNumber) {
     this.id = backgroundNumber
@@ -39,6 +45,9 @@ export class Background {
   }
   
   update(time) {
+    document.body.appendChild(audio);
+    audio.play();
+
     const animation = this.animations
     const frameDelay = animation.delay
     if (time.previous > this.animationTimer + frameDelay) {
