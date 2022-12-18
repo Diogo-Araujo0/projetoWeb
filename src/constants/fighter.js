@@ -16,6 +16,7 @@ export const FighterState = {
   WIN: 'win',
   DEATH: 'death',
   ATTACK: 'attack',
+  DAMAGE: 'damage',
 }
 
 export const PushBox = {
