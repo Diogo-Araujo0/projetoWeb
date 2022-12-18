@@ -2,9 +2,9 @@ import * as control from "/src/InputHandler.js"
 import { Fighter } from "/src/entities/fighters/Fighter.js"
 
 
-const punch = new Audio("/sons/punch.wav");
+const punch = new Audio("../../sons/punch.wav");
 punch.volume = 0.3;
-const jump = new Audio("/sons/jumping.mp3");
+const jump = new Audio("../../sons/jumping.mp3");
 jump.volume = 0.3;
 
 export class Sound{

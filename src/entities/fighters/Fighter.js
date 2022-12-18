@@ -26,6 +26,7 @@ export class Fighter {
     this.attackBox = { x:0 , y:0, width: 0, height: 0 }
     this.hasAttack = false
     this.isAttacking = false
+    this.hasTakenDamage = false
 
     this.states={
       [FighterState.IDLE]:{
@@ -35,7 +36,7 @@ export class Fighter {
           undefined,
           FighterState.IDLE, FighterState.WALK_FORWARD, FighterState.WALK_BACKWARD,
           FighterState.JUMP_UP, FighterState.JUMP_FORWARD,FighterState.JUMP_BACKWARD,
-          FighterState.CROUCH_UP, FighterState.ATTACK,
+          FighterState.CROUCH_UP, FighterState.ATTACK, FighterState.DAMAGE,
         ],
       },
       [FighterState.WALK_FORWARD]:{
@@ -112,9 +113,17 @@ export class Fighter {
         init: this.handleAttackInit.bind(this),
         update: this.handleAttackState.bind(this),
         validForm: [
-          FighterState.IDLE, FighterState.WALK_BACKWARD, FighterState.WALK_FORWARD
+          FighterState.IDLE, FighterState.WALK_BACKWARD, FighterState.WALK_FORWARD,
         ],
       },
+      [FighterState.DAMAGE]:{
+        init: this.handleDamageInit.bind(this),
+        update: this.handleDamageState.bind(this),
+        validForm: [
+          FighterState.IDLE, FighterState.WALK_BACKWARD, FighterState.WALK_FORWARD, FighterState.CROUCH, 
+        ],
+      },
+
     }
     
     this.changeState(FighterState.IDLE)  
@@ -233,6 +242,8 @@ export class Fighter {
       this.changeState(FighterState.CROUCH_DOWN)
     }else if(control.isAttacking(this.playerId)){
       this.changeState(FighterState.ATTACK)
+    }else if(this.hasTakenDamage){
+      this.changeState(FighterState.DAMAGE)
     }
 
     this.direction = this.getDirection()
@@ -247,6 +258,8 @@ export class Fighter {
       this.changeState(FighterState.CROUCH_DOWN)
     }else if(control.isAttacking(this.playerId)){
       this.changeState(FighterState.ATTACK)
+    }else if(this.hasTakenDamage){
+      this.changeState(FighterState.DAMAGE)
     }
 
     this.direction = this.getDirection()
@@ -268,7 +281,6 @@ export class Fighter {
     }
   }
   
-
   handleCrouchDownState(){
     if(this.animations[this.currentState][this.animationFrame][1] == -2){
       this.changeState(FighterState.CROUCH)
@@ -299,6 +311,18 @@ export class Fighter {
     if(this.animations[this.currentState][this.animationFrame][1] == -2){
       this.isAttacking = false
       this.hasAttack = false
+      this.changeState(FighterState.IDLE)
+    }
+  }
+
+  handleDamageInit(){
+    this.handleMoveInit()
+    this.hasTakenDamage = true
+  }
+
+  handleDamageState(){
+    if(this.animations[this.currentState][this.animationFrame][1] == -2){
+      this.hasTakenDamage = false
       this.changeState(FighterState.IDLE)
     }
   }
@@ -378,9 +402,11 @@ export class Fighter {
     if(this.isAttacking && this.hasAttackingTheOpponent() && !this.hasAttack){
         this.hasAttack = true
         this.opponent.hp -= 10
+        this.opponent.changeState(FighterState.DAMAGE)
     }
+
     if(this.hp === 0){
-      this.handleDeathState()
+      this.changeState(FighterState.DEATH)
     }
   }
 
@@ -442,6 +468,6 @@ export class Fighter {
     )
     
     context.setTransform(1, 0, 0, 1, 0, 0)
-    //this.drawDebug(context)
+    this.drawDebug(context)
   }
 }

@@ -1,12 +1,12 @@
 import { Fighter } from "./Fighter.js"
-import { FighterState, PushBox, AttackType} from "../../constants/fighter.js"
+import { FighterState, PushBox, AttackType, FighterHP} from "../../constants/fighter.js"
 
 export class Kakashi extends Fighter {
   constructor(x, y, direction, playerId) {
     super("Kakashi", x, y, direction, playerId)
 
     this.image = document.querySelector('img[alt="kakashi"]')
-    this.hp = 100
+    this.hp = FighterHP
 
     this.frames = new Map([
 
@@ -100,7 +100,7 @@ export class Kakashi extends Fighter {
       [FighterState.WIN]: [ ['win-3',100], ['win-4',100], ['win-5',100], ['win-6',100], ['win-7',100]],
       [FighterState.DEATH]: [['death-1', 180],['death-2',180], ['death-3',0]],
       [FighterState.ATTACK]: [['normalAttack-1', 150], ['normalAttack-2',150], ['normalAttack-3', 150], ['normalAttack-4', -2]],
-      [FighterState.DAMAGE]: [['damage-1', 150],['damage-2',150]],
+      [FighterState.DAMAGE]: [['damage-1', 150],['damage-2',150], ['damage-2',-2]],
     }
 
     this.initialVelocity = {

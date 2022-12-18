@@ -2,6 +2,8 @@ export const FighterDirection = {
   LEFT: -1,
   RIGHT: 1,
 }
+
+export const FighterHP = 100
  
 export const FighterState = {
   IDLE: 'idle',

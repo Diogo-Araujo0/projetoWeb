@@ -1,4 +1,4 @@
-const audio = new Audio("/sons/BGM.mp3");
+const audio = new Audio("./sons/BGM.mp3");
 audio.volume = 0.1;
 document.body.addEventListener("keydown",function(){
   audio.play()

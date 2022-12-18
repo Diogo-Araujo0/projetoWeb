@@ -27,7 +27,6 @@ export class ImmortalFight{
       new FpsCounter(),
       new StatusBar(this.fighters),
       new Icons(this.fighters),
-      new Sound(),
     ]
   
     this.frameTime = {
@@ -48,7 +47,7 @@ export class ImmortalFight{
     for (const entity of this.entities) {
       entity.update(this.frameTime, this.context)
     }
-
+    this.entities[4].updateHealthBar(this.entities[5].fighters[0].hp, this.entities[5].fighters[1].hp)
     this.gameResultCheck()
   }
 

@@ -1,12 +1,12 @@
 import { Fighter } from "./Fighter.js"
-import { AttackType, FighterState, PushBox } from "../../constants/fighter.js"
+import { AttackType, FighterState, PushBox, FighterHP } from "../../constants/fighter.js"
 
 export class Naruto extends Fighter {
   constructor(x, y, direction, playerId) {
     super("Naruto", x, y, direction, playerId)
 
     this.image = document.querySelector('img[alt="naruto"]')
-    this.hp = 100
+    this.hp = FighterHP
 
     this.frames = new Map([
       //idle  
@@ -104,7 +104,7 @@ export class Naruto extends Fighter {
       [FighterState.WIN]: [['win-1', 110],['win-2',120], ['win-3',130], ['win-4',170], ['win-5',130], ['win-6',110], ['win-7',110], ['win-8',110]],
       [FighterState.DEATH]: [['death-1', 180],['death-2',180], ['death-3',0]],
       [FighterState.ATTACK]: [['normalAttack-1', 150],['normalAttack-2',150], ['normalAttack-3', 150], ['normalAttack-4', -2]],
-      [FighterState.DAMAGE]: [['damage-1', 150],['damage-2',150]],
+      [FighterState.DAMAGE]: [['damage-1', 150],['damage-2',150],['damage-2',-2]],
 
 
 
