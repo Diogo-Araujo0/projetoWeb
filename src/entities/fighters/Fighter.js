@@ -404,7 +404,7 @@ export class Fighter {
         this.opponent.hp -= 10
         this.opponent.changeState(FighterState.DAMAGE)
     }
-
+    
     if(this.hp === 0){
       this.changeState(FighterState.DEATH)
     }

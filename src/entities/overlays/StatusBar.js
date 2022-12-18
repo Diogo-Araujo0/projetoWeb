@@ -1,5 +1,5 @@
 import {GAME_DURATION, GAME_RESULT} from '../../constants/game.js'
-import { FighterHP } from '../../constants/fighter.js'
+import { rectsOverlap } from "../../utils/collisions.js"
 
 export class StatusBar{
   
@@ -11,8 +11,8 @@ export class StatusBar{
     this.result = -1
     this.winnerName = ''
     this.isTimeFreeze = false
-    this.player1HP = FighterHP
-    this.player2HP = FighterHP
+    this.hasSpawnedItem = false
+    this.canSpawn = true
 
     this.frames = new Map([
       ['health-bar', [16,18,145,11]],
@@ -32,10 +32,8 @@ export class StatusBar{
       ['ko-white', [161,16,32,14]],
       ['ko-red', [161,1,32,14]],
 
-      ['health-pack', [345,188,25,24]],
-      ['ramen', [344,152,24,24]],
-
-
+      ['item-1', [345,188,25,24]],
+      ['item-2', [344,152,24,24]],
 
       ['time-0', [16,32,14,16]],
       ['time-1', [32,32,14,16]],
@@ -87,16 +85,35 @@ export class StatusBar{
         this.time -= 1
       }
       this.timeTimer = time.previous
-      
     }
   }
+
   update(time){
     this.updateTime(time)
+    if(this.time <= GAME_DURATION-this.delay && this.canSpawn){
+      this.hasSpawnedItem = true
+    }
+    if(this.player1 && this.player2 && this.hasSpawnedItem){
+      if(this.hasCollidedWithItem(this.player1)){
+        if(this.item.id == 1 && this.player1.hp < 100){
+          this.hasSpawnedItem = false
+          this.canSpawn = false
+          this.player1.hp += 10
+        }
+
+      }else if(this.hasCollidedWithItem(this.player2)){
+        if(this.item.id == 1 && this.player2.hp < 100){
+            this.hasSpawnedItem = false
+            this.canSpawn = false
+            this.player2.hp += 10
+        }
+      }
+    }
   }
 
   drawHealthBars(context){
     this.drawFrame(context,'health-bar',31,20)
-    if(this.player1HP < 20 || this.player2HP < 20){
+    if(this.player1.hp < 20 || this.player2.hp < 20){
       this.drawFrame(context,'ko-red',176,18)
     }else{
       this.drawFrame(context,'ko-white',176,18)
@@ -105,11 +122,10 @@ export class StatusBar{
   }
 
   drawDeathBars(context){
-    this.drawFrame(context,`death-bar-${this.player1HP}`,31,20)
-    this.drawFrame(context,`death-bar-${this.player2HP}`,353 ,20 ,-1)
+    this.drawFrame(context,`death-bar-${this.player1.hp}`,31,20)
+    this.drawFrame(context,`death-bar-${this.player2.hp}`,353 ,20 ,-1)
     
   }
-
 
   drawTime(context){
     if(this.time > 0){
@@ -166,6 +182,22 @@ export class StatusBar{
     if (this.result != -2){
       this.drawResult(context)
     }
+
+    if(this.item){
+      if(this.hasSpawnedItem && this.canSpawn){
+        this.drawFrame(context, `item-${this.item.id}`, this.item.x, this.item.y)
+      }
+
+      context.beginPath()
+      context.strokeStyle = '#55FF55'
+      context.fillStyle = '#55FF5555'
+      context.fillRect(
+        Math.floor(this.item.x + this.item.pushBoxX),
+        Math.floor(this.item.y + this.item.pushBoxY),
+        this.item.pushBoxWidth,
+        this.item.pushBoxHeight,
+      )
+    }
   }
 
   changeGameResult(gameResult, playerName){
@@ -177,8 +209,21 @@ export class StatusBar{
     this.isTimeFreeze = true
   }
 
-  updateHealthBar(player1HP, player2HP){
-      this.player1HP = player1HP
-      this.player2HP = player2HP
+  updateAPIData(id, time, posX, posY){
+    this.delay = time
+    this.item = {id: id ,x: posX, y: posY, pushBoxX: 0, pushBoxY: 0, pushBoxWidth: 25, pushBoxHeight: 25}
   }
+
+  updatePlayer(player1, player2){
+    this.player1 = player1
+    this.player2 = player2
+  }
+
+  hasCollidedWithItem = (player) => rectsOverlap(
+    player.position.x + player.pushBox.x, player.position.y + player.pushBox.y,
+    player.pushBox.width, player.pushBox.height,
+    this.item.x + this.item.pushBoxX,
+    this.item.y + this.item.pushBoxY,
+    this.item.pushBoxWidth, this.item.pushBoxHeight, 
+  )
 }

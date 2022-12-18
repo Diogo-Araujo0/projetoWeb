@@ -12,7 +12,6 @@ import { Sounds } from "./entities/Sounds.js"
 
 const paises = [
   "Spain",
-  "USA",
   "Japan",
   "France",
   "Germany",
@@ -65,13 +64,27 @@ export class ImmortalFight{
     for (const entity of this.entities) {
       entity.update(this.frameTime, this.context)
     }
-    this.entities[4].updateHealthBar(this.entities[5].fighters[0].hp, this.entities[5].fighters[1].hp)
+    this.entities[4].updatePlayer(this.entities[5].fighters[0], this.entities[5].fighters[1])
     this.entities[6].updatePlayer(this.entities[5].fighters[0], this.entities[5].fighters[1])
     this.gameResultCheck()
     this.audio.addEventListener('ended', function() {
         this.currentTime = 0;
         this.play();
     }, false);
+
+    if(typeof this.dadosAPI !== "undefined" && !this.entities[4].hasSpawnedItem){
+      var numb1 = this.dadosAPI['Total Cases_text'].charAt(this.dadosAPI['Total Cases_text'].length-1)
+      var numb2 = this.dadosAPI['Total Cases_text'].charAt(this.dadosAPI['Total Cases_text'].length-2)
+      var numb3 = this.dadosAPI['Total Cases_text'].charAt(this.dadosAPI['Total Cases_text'].length-3)
+      var total = parseInt(numb1) * parseInt(numb2) + parseInt(numb3)
+      numb1 = this.dadosAPI['Total Cases_text'].charAt(this.dadosAPI['Total Recovered_text'].length-1)
+      numb2 = this.dadosAPI['Total Cases_text'].charAt(this.dadosAPI['Total Recovered_text'].length-2)
+      numb3 = this.dadosAPI['Total Cases_text'].charAt(this.dadosAPI['Total Recovered_text'].length-3)
+      var x = Math.min(350, (parseInt(numb1) * parseInt(numb2) * parseInt(numb3))*2)
+      var y = Math.max(90, parseInt(numb1) * parseInt(numb2) * parseInt(numb3))
+      this.entities[4].updateAPIData(Math.round(Math.random() + 1), 1, x, y)
+    }
+    
   }
 
   gameResultCheck(){
@@ -116,18 +129,20 @@ export class ImmortalFight{
     
     this.audio.volume = 0.1;
     //this.audio.play()
+    this.getWeather()
+  }
+
+  getWeather = async function() {
+    const num = Math.floor(Math.random() * paises.length);
+    await fetch(`https://covid-19.dataflowkit.com/v1/${paises[num]}`).then((response) =>{
+      var data = response.json()
+      data.then((dados) =>{
+        this.dadosAPI = dados
+      })
+    }).catch((error) => {
+      console.log(error)
+    })
   }
 }
 
 
-const getWeather = async function() {
-  const num = Math.floor(Math.random() * paises.length);
-  await fetch(`https://covid-19.dataflowkit.com/v1/${paises[num]}`).then((response) =>{
-    var data = response.json()
-    data.then((dados) =>{
-      return dados
-    })
-  }).catch((error) => {
-    console.log(error)
-  })
-}
