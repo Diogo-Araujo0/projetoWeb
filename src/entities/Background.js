@@ -1,3 +1,10 @@
+const audio = new Audio("../../audio/background.ogg");
+audio.volume = 0.2;
+
+document.body.addEventListener("keydown",function(){
+  audio.play()
+})
+
 export class Background {
   constructor(backgroundNumber) {
     this.id = backgroundNumber
@@ -51,6 +58,11 @@ export class Background {
       }
     }
     this.image.src = `./imagens/background${this.id}/background(${this.animationFrame}).png`
+
+    audio.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.play();
+  }, false);
   }
 
   draw(context) {

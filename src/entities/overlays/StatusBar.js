@@ -86,11 +86,13 @@ export class StatusBar{
       if(this.time >  0 && !this.isTimeFreeze) {
         this.time -= 1
       }
-      if(this.player1.specialAttack < 100){
-        this.player1.specialAttack += 5
-      }
-      if(this.player2.specialAttack < 100){
-        this.player2.specialAttack += 5
+      if(this.player1 && this.player2){
+        if(this.player1.specialAttack < 100){
+          this.player1.specialAttack += 5
+        }
+        if(this.player2.specialAttack < 100){
+          this.player2.specialAttack += 5
+        }
       }
       this.timeTimer = time.previous
     }

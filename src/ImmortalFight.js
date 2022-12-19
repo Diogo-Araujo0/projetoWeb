@@ -28,7 +28,6 @@ const paises = [
 
 export class ImmortalFight{
   constructor(){
-    this.audio = new Audio("./audio/background.ogg");
     this.context = this.getContext()
     this.isOver = false
     var random = Math.floor(Math.random() * 6);
@@ -101,10 +100,6 @@ export class ImmortalFight{
     this.entities[5].updatePlayer(this.entities[5].fighters[0], this.entities[5].fighters[1])
     this.entities[6].updatePlayer(this.entities[5].fighters[0], this.entities[5].fighters[1])
     this.gameResultCheck()
-    this.audio.addEventListener('ended', function() {
-        this.currentTime = 0;
-        this.play();
-    }, false);
 
     if(typeof this.dadosAPI !== "undefined" && !this.entities[4].hasSpawnedItem){
       var numb1 = this.dadosAPI['Total Cases_text'].charAt(this.dadosAPI['Total Cases_text'].length-1)
@@ -173,9 +168,6 @@ export class ImmortalFight{
     await fetch(`https://covid-19.dataflowkit.com/v1/${paises[num]}`).then((response) =>{
       var data = response.json()
       data.then((dados) =>{
-        this.audio.volume = 0.1;
-        this.audio.muted = false;
-        this.audio.play()
         this.dadosAPI = dados
       })
     }).catch((error) => {
