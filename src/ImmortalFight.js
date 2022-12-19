@@ -1,5 +1,7 @@
 import { Naruto } from "./entities/fighters/Naruto.js"
 import { Kakashi } from "./entities/fighters/Kakashi.js"
+import { Sakura } from "./entities/fighters/Sakura.js"
+import { Gaara } from "./entities/fighters/Gaara.js"
 import { Background } from "./entities/Background.js"
 import { FpsCounter } from "./entities/FpsCounter.js"
 import { BACKGROUND_FLOOR } from "./constants/background.js"
@@ -29,10 +31,41 @@ export class ImmortalFight{
     this.audio = new Audio("./audio/background.ogg");
     this.context = this.getContext()
     this.isOver = false
-    this.fighters = [
-      new Naruto(104, BACKGROUND_FLOOR, FighterDirection.RIGHT,0),
-      new Kakashi(280, BACKGROUND_FLOOR, FighterDirection.LEFT,1),
-    ]
+    var random = Math.floor(Math.random() * 6);
+    if(random == 0){
+      this.fighters = [
+        new Naruto(104, BACKGROUND_FLOOR, FighterDirection.RIGHT,0),
+        new Gaara(280, BACKGROUND_FLOOR, FighterDirection.LEFT,1),
+      ]
+    }else if(random == 1){ 
+      this.fighters = [
+        new Naruto(104, BACKGROUND_FLOOR, FighterDirection.RIGHT,0),
+        new Kakashi(280, BACKGROUND_FLOOR, FighterDirection.LEFT,1),
+      ]
+    }else if(random == 2){ 
+      this.fighters = [
+        new Kakashi(104, BACKGROUND_FLOOR, FighterDirection.RIGHT,0),
+        new Gaara(280, BACKGROUND_FLOOR, FighterDirection.LEFT,1),
+      ]
+    }else if(random == 3){ 
+      this.fighters = [
+        new Gaara(104, BACKGROUND_FLOOR, FighterDirection.RIGHT,0),
+        new Kakashi(280, BACKGROUND_FLOOR, FighterDirection.LEFT,1),
+      ]
+    }
+    else if(random == 4){ 
+      this.fighters = [
+        new Gaara(104, BACKGROUND_FLOOR, FighterDirection.RIGHT,0),
+        new Naruto(280, BACKGROUND_FLOOR, FighterDirection.LEFT,1),
+      ]
+    }else if(random == 5){ 
+      this.fighters = [
+        new Kakashi(104, BACKGROUND_FLOOR, FighterDirection.RIGHT,0),
+        new Naruto(280, BACKGROUND_FLOOR, FighterDirection.LEFT,1),
+      ]
+    }
+
+    
 
     this.fighters[0].opponent = this.fighters[1]
     this.fighters[1].opponent = this.fighters[0]
@@ -132,7 +165,7 @@ export class ImmortalFight{
     window.requestAnimationFrame(this.frame.bind(this))
     
     this.audio.volume = 0.1;
-    //this.audio.play()
+    this.audio.play()
     this.getWeather()
   }
 

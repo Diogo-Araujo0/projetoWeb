@@ -24,6 +24,16 @@ export class Sounds{
     this.winKakashi.volume = 0.5
     this.attackSpecialKakashi = new Audio("../../audio/raikiri.ogg")
     this.attackSpecialKakashi.volume = 0.5
+
+    this.attackGaara = new Audio("../../audio/gaara-attack.ogg")
+    this.attackGaara.volume = 0.3
+    this.damageGaara = new Audio("../../audio/gaara-hurt.ogg")
+    this.damageGaara.volume = 0.5
+    this.winGaara = new Audio("../../audio/gaara-win.ogg")
+    this.winGaara.volume = 0.5
+    this.attackSpecialGaara = new Audio("../../audio/sand.ogg")
+    this.attackSpecialGaara.volume = 0.5
+
   }
   
   playSound(audio){
@@ -51,48 +61,64 @@ export class Sounds{
           this.playSound(this.damageNaruto)
         }else if(this.player1.name == "Kakashi"){
           this.playSound(this.damageKakashi)
+        } else if(this.player1.name == "Gaara"){
+          this.playSound(this.damageGaara)
         }
       }else if(this.player2.currentState === FighterState.DAMAGE){
-          if(this.player2.name == "Naruto"){
-            this.playSound(this.damageNaruto)
-          }else if(this.player2.name == "Kakashi"){
-            this.playSound(this.damageKakashi)
-          }
+        if(this.player2.name == "Naruto"){
+          this.playSound(this.damageNaruto)
+        }else if(this.player2.name == "Kakashi"){
+          this.playSound(this.damageKakashi)
+        } else if(this.player2.name == "Gaara"){
+          this.playSound(this.damageGaara)
+        }
       }else if(this.player1.currentState === FighterState.ATTACK){
         if(this.player1.name == "Naruto"){
           this.playSound(this.attackNaruto)
         }else if(this.player1.name == "Kakashi"){
           this.playSound(this.attackKakashi)
+        }else if(this.player1.name == "Gaara"){
+          this.playSound(this.attackGaara)
         }
       }else if(this.player2.currentState === FighterState.ATTACK){
         if(this.player2.name == "Naruto"){
           this.playSound(this.attackNaruto)
         }else if(this.player2.name == "Kakashi"){
           this.playSound(this.attackKakashi)
+        }else if(this.player2.name == "Gaara"){
+          this.playSound(this.attackGaara)
         }
       }else if(this.player1.currentState === FighterState.ATTACK_SPECIAL){
         if(this.player1.name == "Naruto"){
           this.playSound(this.attackSpecialNaruto)
         }else if(this.player1.name == "Kakashi"){
           this.playSound(this.attackSpecialKakashi)
+        }else if(this.player1.name == "Gaara"){
+          this.playSound(this.attackSpecialGaara)
         }
       }else if(this.player2.currentState === FighterState.ATTACK_SPECIAL){
         if(this.player2.name == "Naruto"){
           this.playSound(this.attackSpecialNaruto)
         }else if(this.player2.name == "Kakashi"){
           this.playSound(this.attackSpecialKakashi)
+        }else if(this.player2.name == "Gaara"){
+          this.playSound(this.attackSpecialGaara)
         }
       }else if(this.player1.currentState === FighterState.WIN){
         if(this.player1.name == "Naruto"){
           this.playSound(this.winNaruto)
         }else if(this.player1.name == "Kakashi"){
           this.playSound(this.winKakashi)
+        }else if(this.player1.name == "Gaara"){
+          this.playSound(this.winGaara)
         }
       }else if(this.player2.currentState === FighterState.WIN){
         if(this.player2.name == "Naruto"){
           this.playSound(this.winNaruto)
         }else if(this.player2.name == "Kakashi"){
           this.playSound(this.winKakashi)
+        }else if(this.player2.name == "Gaara"){
+          this.playSound(this.winGaara)
         }
       }
       else{

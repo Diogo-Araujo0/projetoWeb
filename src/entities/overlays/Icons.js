@@ -12,6 +12,8 @@ export class Icons{
       ['kakashi', [166,619,37,52]],
       ['kakashi2', [139,297,41,33]],
 
+      ['gaara', [165,96,37,37]],
+
       ['power-bar', [2,14,78,13]],
       ['blue-square', [8,129,8,7]],
     ]);
@@ -82,11 +84,21 @@ export class Icons{
     if(this.player1.name === "Naruto"){
       this.drawFrame(context,'naruto',70,31,-1);
     }
-    if(this.player2.name === "Naruto"){}
-    else if(this.player2.name === "Kakashi"){
+    if(this.player1.name === "Kakashi"){
+      this.drawFrame(context,'kakashi2',70,31,-1);
+    }
+    if(this.player1.name === "Gaara"){
+      this.drawFrame(context,'gaara',72,31,-1);
+    }
+    if(this.player2.name === "Naruto"){
+      this.drawFrame(context,'naruto',311 ,31);
+    }
+    if(this.player2.name === "Kakashi"){
       this.drawFrame(context,'kakashi2',311 ,31);
     }
-    
+    if(this.player2.name === "Gaara"){
+      this.drawFrame(context,'gaara',309 ,31);
+    }
   }
 
   

@@ -63,6 +63,8 @@ export class StatusBar{
       ['letter-o', [197,113,10,10]],
       ['letter-s', [53,125,10,10]],
       ['letter-h', [113,113,10,10]],
+      ['letter-g', [101,113,10,10]],
+
       
     ])
   }
@@ -177,6 +179,16 @@ export class StatusBar{
         this.drawFrame(context, `letter-w`, 217, 107)
         this.drawFrame(context, `letter-i`, 228, 107)
         this.drawFrame(context, `letter-n`, 233, 107)
+      }
+      else if(this.winnerName == "Gaara"){
+        this.drawFrame(context, `letter-g`, 142, 107)
+        this.drawFrame(context, `letter-a`, 152, 107)
+        this.drawFrame(context, `letter-a`, 163, 107)
+        this.drawFrame(context, `letter-r`, 173, 107)
+        this.drawFrame(context, `letter-a`, 184, 107)
+        this.drawFrame(context, `letter-w`, 200, 107)
+        this.drawFrame(context, `letter-i`, 211, 107)
+        this.drawFrame(context, `letter-n`, 216, 107)
       }
     }
   }

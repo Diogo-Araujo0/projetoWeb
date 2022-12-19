@@ -1,3 +1,4 @@
+import { DEBUG } from "../constants/game.js"
 export class FpsCounter {
   constructor() {
     this.fps = 0
@@ -8,9 +9,11 @@ export class FpsCounter {
   }
 
   draw(context) {
-    context.font = "14px Arial"
-    context.fillStyle = "#00FF00"
-    context.textAlign = "right"
-    context.fillText(`FPS: ${this.fps}`, context.canvas.width - 2, context.canvas.height -2)
+    if(DEBUG){
+      context.font = "14px Arial"
+      context.fillStyle = "#00FF00"
+      context.textAlign = "right"
+      context.fillText(`FPS: ${this.fps}`, context.canvas.width - 2, context.canvas.height -2)
+    }
   }
 }
