@@ -98,7 +98,7 @@ export class Gaara extends Fighter {
       [FighterState.WALK_BACKWARD]: [['backwards-1', 68],['backwards-2',68], ['backwards-3',68], ['backwards-4',68],['backwards-5',68], ['backwards-6',68]],
       [FighterState.JUMP_UP]: [['jump-up-1', 80],['jump-up-2',80],['jump-up-3',80],['jump-up-4',80],['jump-up-4',-1]],
       [FighterState.JUMP_FORWARD]: [['jump-up-1', 180],['jump-up-2',180], ['jump-up-3',130], ['jump-up-4',100],['jump-up-4',0]],
-      [FighterState.JUMP_BACKWARD]: [,['jump-up-4',180], ['jump-up-3',130], ['jump-up-2',100],['jump-up-1',0]],
+      [FighterState.JUMP_BACKWARD]: [['jump-up-4',180], ['jump-up-3',130], ['jump-up-2',100],['jump-up-1',0]],
       [FighterState.CROUCH]: [['crouch-3',0]],
       [FighterState.CROUCH_DOWN]: [['crouch-1',30],['crouch-2',30],['crouch-3',30],['crouch-3',-2]],
       [FighterState.CROUCH_UP]: [['crouch-3',30],['crouch-2',30],['crouch-1',30],['crouch-1',-2]],

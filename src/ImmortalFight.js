@@ -164,8 +164,7 @@ export class ImmortalFight{
     registerKeyboardEvents()
     window.requestAnimationFrame(this.frame.bind(this))
     
-    this.audio.volume = 0.1;
-    this.audio.play()
+    
     this.getWeather()
   }
 
@@ -174,6 +173,9 @@ export class ImmortalFight{
     await fetch(`https://covid-19.dataflowkit.com/v1/${paises[num]}`).then((response) =>{
       var data = response.json()
       data.then((dados) =>{
+        this.audio.volume = 0.1;
+        this.audio.muted = false;
+        this.audio.play()
         this.dadosAPI = dados
       })
     }).catch((error) => {
